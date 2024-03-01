@@ -6,6 +6,8 @@ import { useProfileStore } from '@/stores/profile';
 import { useSidebarStore } from '@/stores/sidebar';
 import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
+import NavDropdownButton from '@/components/dropdowns/navdropdown/NavDropdownButton.vue';
+import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
 
 const profileStore = useProfileStore();
 const themeStore = useThemeStore();
@@ -56,7 +58,7 @@ const closeOnSmallScreen = () => {
         <span class="sr-only">Close menu</span>
       </button>
     </div>
-    <div class="h-full px-3 py-4 overflow-y-auto">
+    <div class="h-full px-3 py-4 overflow-y-auto">  
       <ul class="space-y-2 font-medium">
         <li>
           <RouterLink to="/home" @click="closeOnSmallScreen" active-class="bg-gray-700" class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
@@ -65,6 +67,11 @@ const closeOnSmallScreen = () => {
             </span>
             <span class="ms-3">Home</span>
           </RouterLink>
+        </li>
+        <li>
+          <NavDropdownButton>
+            <NavDropdownLink to="/chat" />
+          </NavDropdownButton>
         </li>
         <li>
           <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">

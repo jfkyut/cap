@@ -22,6 +22,15 @@ const authenticatedRoutes = [
     },
     beforeEnter: [authenticated, verified]
   },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('@/views/chat/ChatView.vue'),
+    meta: {
+      layout: AuthenticatedLayout
+    },
+    beforeEnter: [authenticated, verified]
+  },
 ];
 
 export default authenticatedRoutes;

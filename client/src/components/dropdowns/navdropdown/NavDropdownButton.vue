@@ -9,6 +9,8 @@ const toggleDropdownLinks = () => {
     ? isLinksShow.value = true
     : isLinksShow.value = false
 }
+
+defineProps({ buttonText: String, iconClass: String })
 </script>
 
 <template>
@@ -16,9 +18,9 @@ const toggleDropdownLinks = () => {
     <div class="flex justify-between items-end w-full">
       <div>
         <span class="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white">
-          <i class="fa fa-robot"></i>
+          <i :class="iconClass"></i>
         </span>
-        <span class="ms-3">ChatBot</span>
+        <span class="ms-3">{{ buttonText }}</span>
       </div>
       <div>
         <span>
@@ -32,7 +34,7 @@ const toggleDropdownLinks = () => {
   <ul 
     id="dropdown-example" 
     v-show="isLinksShow"
-    class="py-2 space-y-2 duration-200">
+    class="py-2 space-y-2 duration-200 max-h-[50vh] overflow-y-auto">
     <slot/>
   </ul>
 </template>

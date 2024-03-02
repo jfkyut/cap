@@ -8,19 +8,20 @@ import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
 import NavDropdownButton from '@/components/dropdowns/navdropdown/NavDropdownButton.vue';
 import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
+import ToggleInput from '@/components/inputs/ToggleInput.vue';
 
 const profileStore = useProfileStore();
 const themeStore = useThemeStore();
 const sidebarStore = useSidebarStore();
 
 const toggleTheme = (e) => {
-  e.target.checked
+  (e.target.checked)
     ? themeStore.setToDark()
     : themeStore.setToLight()
 }
 
 const toggleSidebar = () => {
-  sidebarStore.isShow === true
+  (sidebarStore.isShow === true)
     ? sidebarStore.setHide()
     : sidebarStore.setShow()
 }
@@ -28,6 +29,8 @@ const toggleSidebar = () => {
 const closeOnSmallScreen = () => {
   if (window.innerWidth <= 768) sidebarStore.setHide()
 }
+
+const arr = [2,23,34,43,2,2,4,2,3,2,3,2,3,2,3,2,2,3,2];
 
 </script>
 
@@ -69,27 +72,22 @@ const closeOnSmallScreen = () => {
           </RouterLink>
         </li>
         <li>
-          <NavDropdownButton>
-            <NavDropdownLink to="/chat" />
+          <NavDropdownButton button-text="ChatBot" icon-class="fa fa-robot">
+            <NavDropdownLink to="/chat" @click="closeOnSmallScreen" />
           </NavDropdownButton>
         </li>
         <li>
           <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">
             <div>
               <span class="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white">
-                  <i class="fa fa-moon"></i>
-                </span>
+                <i class="fa fa-moon"></i>
+              </span>
               <span class="ms-3">Dark mode</span>
             </div>
 
-            <label class="inline-flex items-center cursor-pointer">
-              <input 
-                type="checkbox" 
-                class="sr-only peer" 
-                :checked="themeStore.theme === 'dark' ? true : false"
-                @change="toggleTheme">
-              <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-            </label>
+            <ToggleInput 
+              :is-checked="themeStore.theme === 'dark' ? true : false"
+              @on-change="toggleTheme" />
           </div>
         </li>
       </ul>

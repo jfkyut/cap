@@ -2,6 +2,9 @@
 import { ref, watch } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 
 const chatStore = useChatStore();
 const { message } = storeToRefs(chatStore);
@@ -22,21 +25,35 @@ watch(message, (message) => {
 })
 
 const submitMessage = () => {
+  if (message.value === null || message.value === '') {
+    toast.warning('Warning. Message field is empty.');
+
+    return;
+  }
+
   console.log(message.value);
   message.value = null;
 }
+
+const handleKeyDown = (e) => {
+  (window.innerWidth >= 1024 && !e.shiftKey && e.key === 'Enter') && (
+    e.preventDefault(),
+    submitMessage()
+  )
+};
 
 </script>
 
 <template>
   <form @submit.prevent="submitMessage" class="flex justify-center">
     <label for="chat" class="sr-only">Your message</label>
-    <div class="bg-white flex items-end px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 border dark:border-gray-700 w-full max-w-3xl shadow">
+    <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-3xl shadow">
       <button type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
         <i class="fa fa-message"></i>
         <span class="sr-only">Add emoji</span>
       </button>
       <textarea 
+        @keydown="handleKeyDown"
         v-model="message" 
         ref='textAreaRef' 
         id="chat" 

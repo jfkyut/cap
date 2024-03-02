@@ -30,15 +30,13 @@ const closeOnSmallScreen = () => {
   if (window.innerWidth <= 768) sidebarStore.setHide()
 }
 
-const arr = [2,23,34,43,2,2,4,2,3,2,3,2,3,2,3,2,2,3,2];
-
 </script>
 
 <template>
 <div class="relative">
   <div
     :class="sidebarStore.isShow ? 'md:ml-64' : 'md:ml-0'"
-    class="bg-white dark:bg-gray-800 pt-4 p-2 sticky top-0 flex justify-between border-b dark:border-gray-700 shadow transition-transform z-10">
+    class="bg-white dark:bg-gray-800 pt-4 p-2 fixed top-0 right-0 left-0 flex justify-between border-b dark:border-gray-700 shadow transition-transform z-10">
     <ExtraButton @click="toggleSidebar">
       <span class="sr-only">Open sidebar</span>
       <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +94,7 @@ const arr = [2,23,34,43,2,2,4,2,3,2,3,2,3,2,3,2,2,3,2];
   
   <div
     :class="sidebarStore.isShow ? 'md:ml-64' : 'md:ml-0'"
-    class="p-4 bg-gray-50 dark:bg-gray-900 min-h-screen dark:text-gray-400 transition-transform">
+    class="p-4 bg-gray-50 dark:bg-gray-900 min-h-screen dark:text-gray-400 transition-transform pt-20">
     <div
       :class="sidebarStore.isShow ? 'opacity-100' : 'opacity-0 invisible'" 
       @click.self="sidebarStore.setHide()"

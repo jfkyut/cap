@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
+import PresetMessages from './PresetMessages.vue';
 
 const toast = useToast();
 
@@ -48,10 +49,7 @@ const handleKeyDown = (e) => {
   <form @submit.prevent="submitMessage" class="flex justify-center">
     <label for="chat" class="sr-only">Your message</label>
     <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-3xl shadow">
-      <button type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-        <i class="fa fa-message"></i>
-        <span class="sr-only">Add emoji</span>
-      </button>
+      <PresetMessages />
       <textarea 
         @keydown="handleKeyDown"
         v-model="message" 

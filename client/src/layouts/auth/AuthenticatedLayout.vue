@@ -26,9 +26,7 @@ const toggleSidebar = () => {
     : sidebarStore.setShow()
 }
 
-const closeOnSmallScreen = () => {
-  if (window.innerWidth <= 768) sidebarStore.setHide()
-}
+const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
 
 </script>
 

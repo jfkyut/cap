@@ -71,7 +71,10 @@ const closeOnSmallScreen = () => {
         </li>
         <li>
           <NavDropdownButton button-text="ChatBot" icon-class="fa fa-robot">
-            <NavDropdownLink to="/chat" @click="closeOnSmallScreen" />
+            <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen">
+              <span>New chat</span>
+              <i class="fa fa-pen"></i>
+            </NavDropdownLink>
           </NavDropdownButton>
         </li>
         <li>

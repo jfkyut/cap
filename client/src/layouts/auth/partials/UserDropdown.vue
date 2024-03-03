@@ -34,7 +34,8 @@ const isDropdownShow = ref(false);
       disabled
       @mouseover="isDropdownShow = true"
       @mouseout="isDropdownShow = false">
-      {{ user?.name }}
+      <span>{{ user?.name }}</span>
+      <i class="fa fa-angle-down ml-2"></i>
     </ExtraButton>
 
     <DropdownMenu 

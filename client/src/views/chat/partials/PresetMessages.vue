@@ -9,13 +9,9 @@ const { message } = storeToRefs(useChatStore());
 
 const isModalShow = ref(false);
 
-const openModal = () => {
-  isModalShow.value = true;
-}
+const openModal = () => isModalShow.value = true;
 
-const closeModal = () => {
-  isModalShow.value = false;
-}
+const closeModal = () => isModalShow.value = false;
 
 const presetMessages = [
   'Summarize the importance of artificial intelligence in healthcare.',
@@ -50,6 +46,7 @@ const setMessage = (currentMessage) => {
     <GenericModal
       title="Preset messages"
       :show="isModalShow"
+      cancel-button-text="Close"
       @onCancel="closeModal"
       :is-form="false">
     

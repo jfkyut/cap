@@ -6,7 +6,7 @@ import { useProfileStore } from '@/stores/profile';
 import { useSidebarStore } from '@/stores/sidebar';
 import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
-import NavDropdownButton from '@/components/dropdowns/navdropdown/NavDropdownButton.vue';
+import NavDropdownTrigger from '@/components/dropdowns/navdropdown/NavDropdownTrigger.vue';
 import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
 
@@ -70,12 +70,12 @@ const closeOnSmallScreen = () => {
           </RouterLink>
         </li>
         <li>
-          <NavDropdownButton button-text="ChatBot" icon-class="fa fa-robot">
+          <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot">
             <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen">
               <span>New chat</span>
               <i class="fa fa-pen"></i>
             </NavDropdownLink>
-          </NavDropdownButton>
+          </NavDropdownTrigger>
         </li>
         <li>
           <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">

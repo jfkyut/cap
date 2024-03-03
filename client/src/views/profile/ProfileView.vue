@@ -1,17 +1,16 @@
 <script setup>
-  import TextInput from '@/components/inputs/TextInput.vue';
-  import { useProfileStore } from '@/stores/profile';
-  import { storeToRefs } from 'pinia';
-  import DangerButton2 from '@/components/buttons/DangerButton2.vue';
-  import EditProfile from '@/views/profile/partials/EditProfile.vue';
+import TextInput from '@/components/inputs/TextInput.vue';
+import { useProfileStore } from '@/stores/profile';
+import { storeToRefs } from 'pinia';
+import EditProfile from '@/views/profile/partials/EditProfile.vue';
 import EditPassword from './partials/EditPassword.vue';
 import DeleteProfile from './partials/DeleteProfile.vue';
 
-  const { user } = storeToRefs(useProfileStore());
+const { user } = storeToRefs(useProfileStore());
 </script>
 
 <template>
-  <div class="min-h-screen flex justify-center">
+  <div class="flex justify-center">
     <div class="space-y-6 mt-5">
 
       <section>

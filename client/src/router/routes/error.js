@@ -6,7 +6,8 @@ const errorRoutes = [
     name: 'Not found',
     component: () => import('@/views/errors/NotFound.vue'),
     meta: {
-      layout: ErrorLayout
+      layout: ErrorLayout,
+      title: 'Page not found'
     },
   },
 ]

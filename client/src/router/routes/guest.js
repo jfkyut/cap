@@ -9,7 +9,8 @@ const guestRoutes = [
     name: 'login',
     component: () => import('@/views/auth/LoginView.vue'),
     meta: {
-      layout: GuestLayoutVue
+      layout: GuestLayoutVue,
+      title: 'Login'
     },
     beforeEnter: [guest]
   },
@@ -18,7 +19,8 @@ const guestRoutes = [
     name: 'register',
     component: () => import('@/views/auth/RegisterView.vue'),
     meta: {
-      layout: GuestLayoutVue
+      layout: GuestLayoutVue,
+      title: 'Register'
     },
     beforeEnter: [guest]
   },
@@ -27,7 +29,8 @@ const guestRoutes = [
     name: 'forgot-password',
     component: () => import('@/views/auth/ForgotPasswordView.vue'),
     meta: {
-      layout: GuestLayoutVue
+      layout: GuestLayoutVue,
+      title: 'Forgot password'
     },
     beforeEnter: [guest]
   },
@@ -36,7 +39,8 @@ const guestRoutes = [
     name: 'verify-email',
     component: () => import('@/views/auth/EmailVerificationView.vue'),
     meta: {
-      layout: GuestLayoutVue
+      layout: GuestLayoutVue,
+      title: 'Verify email'
     },
     beforeEnter: [authenticated, notVerified]
   },
@@ -45,7 +49,8 @@ const guestRoutes = [
     name: 'password-reset',
     component: () => import('@/views/auth/PasswordReset.vue'),
     meta: {
-      layout: GuestLayoutVue
+      layout: GuestLayoutVue,
+      title: 'Password reset'
     },
     beforeEnter: [guest]
   },

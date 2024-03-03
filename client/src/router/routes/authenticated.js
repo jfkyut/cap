@@ -9,7 +9,8 @@ const authenticatedRoutes = [
     name: 'home',
     component: () => import('@/views/app/HomeView.vue'),
     meta: {
-      layout: AuthenticatedLayout
+      layout: AuthenticatedLayout,
+      title: 'Home'
     },
     beforeEnter: [authenticated, verified]
   },
@@ -18,7 +19,8 @@ const authenticatedRoutes = [
     name: 'account',
     component: () => import('@/views/profile/ProfileView.vue'),
     meta: {
-      layout: AuthenticatedLayout
+      layout: AuthenticatedLayout,
+      title: 'Account'
     },
     beforeEnter: [authenticated, verified]
   },
@@ -27,7 +29,8 @@ const authenticatedRoutes = [
     name: 'chat',
     component: () => import('@/views/chat/ChatView.vue'),
     meta: {
-      layout: AuthenticatedLayout
+      layout: AuthenticatedLayout,
+      title: 'Chat'
     },
     beforeEnter: [authenticated, verified]
   },

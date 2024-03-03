@@ -5,7 +5,7 @@ import errorRoutes from './routes/error'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_, __, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
@@ -17,6 +17,16 @@ const router = createRouter({
     ...authenticated,
     ...errorRoutes
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const title = to.meta.title
+
+  if (title) {
+    document.title = `${title} | VTASVP`;
+  }
+
+  next()
 })
 
 export default router

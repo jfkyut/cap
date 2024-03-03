@@ -64,7 +64,7 @@ onMounted(() => {
         </div>
         <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
       </div>
-      <RouterLink to="/forgot-password" class="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</RouterLink>
+      <RouterLink to="/forgot-password" class="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Forgot Password?</RouterLink>
     </div>
     <PrimaryButton 
       v-if="!isLoading"

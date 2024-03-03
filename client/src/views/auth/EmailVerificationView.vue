@@ -42,7 +42,7 @@ const logoutUser = async () => {
   <div class="space-y-6" action="#">
     <div class="space-y-2">
       <h5 class="text-xl font-medium text-gray-900 dark:text-white">Email verification notice</h5>
-      <p>Registration complete! We've sent a verification to your email. If not received, use the resend button below. Welcome aboard!</p>
+      <p>Registration complete! We've sent a verification to <span class="font-bold">{{ user.email }}</span>. If not received, use the resend button below. Welcome aboard!</p>
     </div>
     <PrimaryButton 
       v-if="!isLoading"

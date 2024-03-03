@@ -9,7 +9,19 @@ import UserBubble from '@/components/chatBubbles/UserBubble.vue';
 <template>
   <div class="relative min-h-[88vh]">
     <div class="w-full text-black relative h-[80vh] overflow-y-auto">
-      <div class="w-full max-w-4xl mx-auto space-y-6">
+      <div class="w-full max-w-4xl mx-auto space-y-6 mb-6">
+        <UserBubble />
+        <BotBubble />
+      </div>
+      <div class="w-full max-w-4xl mx-auto space-y-6 mb-6">
+        <UserBubble />
+        <BotBubble />
+      </div>
+      <div class="w-full max-w-4xl mx-auto space-y-6 mb-6">
+        <UserBubble />
+        <BotBubble />
+      </div>
+      <div class="w-full max-w-4xl mx-auto space-y-6 mb-6">
         <UserBubble />
         <BotBubble />
       </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
@@ -43,12 +43,16 @@ const handleKeyDown = (e) => {
   )
 };
 
+onMounted(() => textAreaRef.value.focus())
+
+onUnmounted(() => message.value = null)
+
 </script>
 
 <template>
   <form @submit.prevent="submitMessage" class="flex justify-center">
     <label for="chat" class="sr-only">Your message</label>
-    <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-3xl shadow">
+    <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-700 border dark:border-gray-600 w-full max-w-3xl shadow">
       <PresetMessages />
       <textarea 
         @keydown="handleKeyDown"

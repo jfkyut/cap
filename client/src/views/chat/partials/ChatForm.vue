@@ -7,8 +7,7 @@ import PresetMessages from './PresetMessages.vue';
 
 const toast = useToast();
 
-const chatStore = useChatStore();
-const { message } = storeToRefs(chatStore);
+const { message, temporaryMessage } = storeToRefs(useChatStore());
 
 const textAreaRef = ref(null);
 const reactiveHeight = ref(0);
@@ -31,6 +30,8 @@ const submitMessage = () => {
 
     return;
   }
+
+  temporaryMessage.value = message.value;
 
   console.log(message.value);
   message.value = null;

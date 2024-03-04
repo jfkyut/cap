@@ -2,17 +2,26 @@
 
 import ExtraButton from '../buttons/ExtraButton.vue';
 
+defineProps({ message: String })
+
 </script>
 
 <template>
   <div class="flex items-start gap-2.5">
     <div class="flex flex-col gap-1 w-fit max-w-full">
       <div class="flex items-center space-x-2 rtl:space-x-reverse ">
-        <span class="text-sm font-semibold text-gray-900 dark:text-white">Bonnie Green</span>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">Fofo</span>
       </div>
       <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-        <p class="text-sm font-normal text-gray-900 dark:text-white"> That's awesome. I think our users will really appreciate the improvements. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus voluptatem quae unde, molestiae sequi impedit quis tenetur laudantium magni alias doloremque sunt accusantium provident saepe rerum minus laborum blanditiis iste?</p>
-        <div class="mt-3 flex gap-1 justify-end">
+        <p class="text-sm font-normal text-gray-900 dark:text-white" v-if="message !== '' || message">
+          {{ message }}
+        </p>
+        <div class="flex gap-2" v-else>
+          <div class="h-3 w-3 bg-gray-400 rounded-full animate-bounce "></div>
+          <div class="h-3 w-3 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 200ms;"></div>
+          <div class="h-3 w-3 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
+        </div>
+        <div v-if="message !== '' || message" class="mt-3 flex gap-1 justify-end">
           <ExtraButton>
             <i class="fa fa-play"></i>
           </ExtraButton>

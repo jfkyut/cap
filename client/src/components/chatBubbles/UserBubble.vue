@@ -5,6 +5,8 @@ import { storeToRefs } from 'pinia';
 
 const { user } = storeToRefs(useProfileStore());
 
+defineProps({ message: String })
+
 </script>
 
 <template>
@@ -15,7 +17,7 @@ const { user } = storeToRefs(useProfileStore());
         <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ user.name }}</span>
       </div>
       <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-blue-200 rounded-s-xl rounded-ee-xl rounded-es-xl dark:bg-blue-700">
-        <p class="text-sm font-normal text-gray-900 dark:text-white"> That's awesome. I think our users will really appreciate the improvements.</p>
+        <p class="text-sm font-normal text-gray-900 dark:text-white">{{ message }}</p>
       </div>
     </div>
   </div>

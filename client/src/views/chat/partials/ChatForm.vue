@@ -4,6 +4,9 @@ import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
 import PresetMessages from './PresetMessages.vue';
+import { useChatService } from '@/services/chatService';
+
+const { sendNewChatRequest } = useChatService();
 
 const toast = useToast();
 
@@ -24,7 +27,7 @@ watch(message, (message) => {
   (!message) && resetTextAreaHeight();
 })
 
-const submitMessage = () => {
+const submitMessage = async () => {
   if (message.value === null || message.value === '') {
     toast.warning('Warning. Message field is empty.');
 
@@ -33,7 +36,10 @@ const submitMessage = () => {
 
   temporaryMessage.value = message.value;
 
-  console.log(message.value);
+  await sendNewChatRequest(message.value);
+
+  temporaryMessage.value = null;
+
   message.value = null;
 }
 

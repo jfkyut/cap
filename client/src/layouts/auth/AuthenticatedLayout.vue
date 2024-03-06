@@ -9,7 +9,13 @@ import ExtraButton from '@/components/buttons/ExtraButton.vue';
 import NavDropdownTrigger from '@/components/dropdowns/navdropdown/NavDropdownTrigger.vue';
 import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
+import { onMounted } from 'vue';
+import { useChatService } from '@/services/chatService';
+import { useChatStore } from '@/stores/chat';
+import { storeToRefs } from 'pinia';
 
+const { chat } = storeToRefs(useChatStore());
+const { getChats } = useChatService();
 const profileStore = useProfileStore();
 const themeStore = useThemeStore();
 const sidebarStore = useSidebarStore();
@@ -27,6 +33,14 @@ const toggleSidebar = () => {
 }
 
 const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
+
+onMounted( async () => {
+  const { data } = await getChats();
+
+  chat.value = data;
+
+  
+})
 
 </script>
 
@@ -72,6 +86,9 @@ const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setH
             <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen">
               <span>New chat</span>
               <i class="fa fa-pen"></i>
+            </NavDropdownLink>
+            <NavDropdownLink :to="`/chat/${convo.id}`" v-for="(convo, index) in chat" :key="index">
+              {{ convo.title }}
             </NavDropdownLink>
           </NavDropdownTrigger>
         </li>

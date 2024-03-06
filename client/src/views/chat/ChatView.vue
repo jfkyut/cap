@@ -3,6 +3,16 @@
 import ChatForm from '@/views/chat/partials/ChatForm.vue';
 import TemporaryMessages from '@/views/chat/partials/TemporaryMessages.vue';
 import Messages from '@/views/chat/partials/Messages.vue';
+import { onMounted } from 'vue';
+import { useChatStore } from '@/stores/chat';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const { getMessages } = useChatStore();
+
+onMounted( () => {
+  (route.name === 'chat') && getMessages(route.params.id);
+})
 
 </script>
 

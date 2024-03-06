@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useChatService } from "@/services/chatService";
+
+const { getMessages } = useChatService();
 
 export const useChatStore = defineStore('chat', () => {
 
@@ -10,14 +13,12 @@ export const useChatStore = defineStore('chat', () => {
   const chat = ref([]);
 
   const getMessages = (id) => {
+    console.log(id);
     chat.value.forEach((chat) => {
-      if (chat.id === id) {
-        chat.messages.length <= 0
-          ? 
-          : null
-      }
-
-    });
+      console.log(chat.id);
+      (chat.id === id) && console.log("check")
+    })
+    
   }
 
   const addChat = (newChat) => {
@@ -35,6 +36,7 @@ export const useChatStore = defineStore('chat', () => {
     temporaryMessage,
     chat, 
     addChat,
-    addMessage
+    addMessage,
+    getMessages
   }
 })

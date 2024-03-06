@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])
         Route::delete('/profile', [ProfileController::class,'destroy']);
         Route::put('/password', [PasswordController::class,'update']);
 
+        Route::get('/chat', [ChatController::class,'index']);
         Route::post('/chat', [ChatController::class, 'store']);
         Route::get('/chat/{chat}', [ChatController::class, 'show']);
         Route::post('/message/{chat}', [MessageController::class, 'store']);

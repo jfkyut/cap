@@ -40,7 +40,6 @@ class ChatController extends Controller
     public function store(ChatStoreRequest $request)
     {
         $data = $this->chatbotService->initializeData($request->validated('message'));
-
         $response = $this->chatbotService->generateResponse($data);
 
         if (!$response) {

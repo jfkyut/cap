@@ -5,10 +5,14 @@ import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
 import PresetMessages from './PresetMessages.vue';
 import { useChatService } from '@/services/chatService';
+import { useRoute, useRouter } from 'vue-router';
 
-const { sendNewChatRequest } = useChatService();
+const { sendChatRequest, sendMessageRequest } = useChatService();
 
+const router = useRouter();
+const route = useRoute();
 const toast = useToast();
+const { addChat, addMessage } = useChatStore();
 
 const { message, temporaryMessage } = storeToRefs(useChatStore());
 
@@ -30,17 +34,25 @@ watch(message, (message) => {
 const submitMessage = async () => {
   if (message.value === null || message.value === '') {
     toast.warning('Warning. Message field is empty.');
-
     return;
   }
 
   temporaryMessage.value = message.value;
-
-  await sendNewChatRequest(message.value);
-
-  temporaryMessage.value = null;
-
   message.value = null;
+
+  if (route.name === 'new-chat') {
+    const { data } = await sendChatRequest(temporaryMessage.value);
+
+    addChat(data);
+    temporaryMessage.value = null;
+
+    router.push(`/chat/${data.id}`);
+  } else if (route.name === 'chat') {
+    const { data } = await sendMessageRequest(temporaryMessage.value, route.params.id)
+
+    addMessage(route.params.id, data.messages);
+    temporaryMessage.value = null;
+  }
 }
 
 const handleKeyDown = (e) => {

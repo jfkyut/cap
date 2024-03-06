@@ -5,16 +5,25 @@ const { sendApiRequest, getCsrfToken } = useApiUtilities();
 
 export const useChatService = () => {
 
-  const sendNewChatRequest = (message) => {
+  const sendChatRequest = (message) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
-      const { data } = await axios.post('/api/chat', { message: message });
-
-      console.log(data);
-
-      return data;
+      return await axios.post('/api/chat', { message: message });
     });
   }
 
-  return { sendNewChatRequest }
+  const sendMessageRequest = (message, id) => {
+    return sendApiRequest( async () => {
+      await getCsrfToken();
+      return await axios.post(`/api/message/${id}`, { message: message });
+    })
+  }
+
+  const getChat = (id) => {
+    return sendApiRequest( async () => {
+      await axios.get(`/api/chat/${id}`);
+    });
+  }
+
+  return { sendChatRequest, sendMessageRequest, getChat }
 }

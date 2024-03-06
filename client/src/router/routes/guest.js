@@ -1,5 +1,5 @@
 import GuestLayoutVue from '@/layouts/guest/GuestLayout.vue';
-import guards from '../guards/guards';
+import guards from '../middleware/guards';
 
 const { guest, authenticated, notVerified } = guards();
 

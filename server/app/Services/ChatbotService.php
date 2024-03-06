@@ -28,7 +28,7 @@ class ChatbotService
     {
         $response = Http::withHeaders([
             "Content-type" => "application/json",
-            "Authorization" => "Bearer " ,
+            "Authorization" => "Bearer " . env('OPENAI_KEY'),
         ])->post(env("OPENAI_ENDPOINT"), $data);
 
         return $response->ok()

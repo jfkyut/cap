@@ -2,64 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
-use Illuminate\Http\Request;
+use App\Models\Chat;
+use App\Http\Requests\Chat\ChatStoreRequest;
+use App\Services\ChatbotService;
+use App\Services\MessageService;
 
 class MessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    private $chatbotService;
+    private $messageService;
+
+    public function __construct(ChatbotService $chatbotService, MessageService $messageService)
     {
-        //
+        $this->chatbotService = $chatbotService;
+        $this->messageService = $messageService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ChatStoreRequest $request, Chat $chat)
     {
-        //
-    }
+        $data = $this->chatbotService->initializeData($request->validated('message'));
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $response = $this->chatbotService->generateResponse($data);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Message $message)
-    {
-        //
-    }
+        if (! $response) {
+            return abort(500, 'Something went wrong.');
+        } else {
+            $message = $this->messageService->createMessages(
+                $request->validated('message'),
+                $response->content,
+                $chat
+            );
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Message $message)
-    {
-        //
+        return response([
+            'chat_id' => $chat->id,
+            'messages' => $message
+        ]);
     }
 }

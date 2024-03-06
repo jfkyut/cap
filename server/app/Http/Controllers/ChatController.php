@@ -54,7 +54,7 @@ class ChatController extends Controller
                 $chat
             );
 
-            return new ChatResource($chat->find($chat->id)->load('messages'));
+            return response($chat->find($chat->id)->load('messages'));
         }
     }
 
@@ -63,7 +63,7 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        //
+        return $chat;
     }
 
     /**

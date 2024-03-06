@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
@@ -24,4 +25,6 @@ Route::middleware(['auth:sanctum'])
         Route::put('/password', [PasswordController::class,'update']);
 
         Route::post('/chat', [ChatController::class, 'store']);
+        Route::get('/chat/{chat}', [ChatController::class, 'show']);
+        Route::post('/message/{chat}', [MessageController::class, 'store']);
     });

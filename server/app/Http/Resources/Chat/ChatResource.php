@@ -16,12 +16,6 @@ class ChatResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-        return [
-            "data" => array_merge(
-                    $this->getAttributes(),
-                    ['messages' => $this->messages->toArray()], 
-                    ['redirect_uri' => env("FRONTEND_URL") . "/" . $this->id]
-                )
-        ];
+        return parent::toArray($request);
     }
 }

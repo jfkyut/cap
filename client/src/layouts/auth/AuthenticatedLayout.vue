@@ -85,7 +85,11 @@ onMounted( async () => {
               <span>New chat</span>
               <i class="fa fa-pen"></i>
             </NavDropdownLink>
-            <NavDropdownLink :to="`/chat/${convo.id}`" v-for="(convo, index) in chat" :key="index">
+            <NavDropdownLink 
+              v-for="(convo, index) in chat" 
+              :key="index"
+              :to="`/chat/${convo.id}`" 
+              @click="closeOnSmallScreen">
               {{ convo.title }}
             </NavDropdownLink>
           </NavDropdownTrigger>

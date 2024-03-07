@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
@@ -15,6 +15,7 @@ const toast = useToast();
 const { addChat, addMessage } = useChatStore();
 
 const { message, temporaryMessage } = storeToRefs(useChatStore());
+const routePath = computed(() => route.path);
 
 const textAreaRef = ref(null);
 const reactiveHeight = ref(0);
@@ -64,7 +65,10 @@ const handleKeyDown = (e) => {
 
 onMounted(() => textAreaRef.value.focus())
 
-onUnmounted(() => message.value = null)
+watch(routePath, () => {
+  textAreaRef.value.focus()
+  message.value = null
+})
 
 </script>
 

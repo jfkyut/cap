@@ -67,7 +67,9 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        return $chat;
+        return $chat->where('id', $chat->id)
+                    ->with('messages')
+                    ->first();
     }
 
     /**

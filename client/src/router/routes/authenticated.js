@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/layouts/auth/AuthenticatedLayout.vue';
 import guards from '@/router/middleware/guards';
+
 const { authenticated, verified } = guards();
 
 const authenticatedRoutes = [

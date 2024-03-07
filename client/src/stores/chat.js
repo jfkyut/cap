@@ -8,21 +8,24 @@ export const useChatStore = defineStore('chat', () => {
 
   const message = ref(null);
 
+  const messages = ref(null);
+
   const temporaryMessage = ref(null);
 
   const chat = ref([]);
 
-  const getMessages = (id) => {
-    console.log(id);
-    chat.value.forEach((chat) => {
-      console.log(chat.id);
-      (chat.id === id) && console.log("check")
-    })
-    
+  const getChatMessages = (id) => {
+    chat.value.forEach( async (chat) => {
+      if (chat.id === id && chat.messages === undefined) {
+        const { data } = await getMessages(id);
+        
+        chat.messages = data.messages;
+      }
+    });
   }
 
   const addChat = (newChat) => {
-    (newChat) && chat.value.push(newChat)
+    (newChat) && chat.value.unshift(newChat)
   }
 
   const addMessage = (id, messages) => {
@@ -33,10 +36,11 @@ export const useChatStore = defineStore('chat', () => {
 
   return { 
     message, 
+    messages,
     temporaryMessage,
     chat, 
     addChat,
     addMessage,
-    getMessages
+    getChatMessages
   }
 })

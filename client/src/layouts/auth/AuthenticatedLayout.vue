@@ -38,8 +38,6 @@ onMounted( async () => {
   const { data } = await getChats();
 
   chat.value = data;
-
-  
 })
 
 </script>

@@ -1,11 +1,13 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toastification';
 import PresetMessages from './PresetMessages.vue';
 import { useChatService } from '@/services/chatService';
 import { useRoute, useRouter } from 'vue-router';
+
+const emit = defineEmits(['submitted']);
 
 const { sendChatRequest, sendMessageRequest } = useChatService();
 
@@ -54,6 +56,8 @@ const submitMessage = async () => {
     addMessage(route.params.id, data.messages);
     temporaryMessage.value = null;
   }
+  emit('submitted');
+
 }
 
 const handleKeyDown = (e) => {

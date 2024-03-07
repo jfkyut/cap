@@ -81,7 +81,7 @@ onMounted( async () => {
         </li>
         <li>
           <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot">
-            <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen">
+            <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen" title="New Chat">
               <span>New chat</span>
               <i class="fa fa-pen"></i>
             </NavDropdownLink>
@@ -89,8 +89,11 @@ onMounted( async () => {
               v-for="(convo, index) in chat" 
               :key="index"
               :to="`/chat/${convo.id}`" 
-              @click="closeOnSmallScreen">
-              {{ convo.title }}
+              @click="closeOnSmallScreen"
+              :title="convo.title">
+              <div class="truncate hover:not-sr-only">
+                {{ convo.title }}
+              </div>
             </NavDropdownLink>
           </NavDropdownTrigger>
         </li>

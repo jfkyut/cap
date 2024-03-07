@@ -34,7 +34,7 @@ defineProps({ buttonText: String, iconClass: String })
   <ul 
     id="dropdown-example" 
     v-show="isLinksShow"
-    class="py-2 space-y-2 duration-200 max-h-[50vh] overflow-y-auto">
+    class="p-2 space-y-2 duration-200 max-h-[50vh] overflow-y-auto bg-gray-900">
     <slot/>
   </ul>
 </template>

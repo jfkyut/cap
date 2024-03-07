@@ -10,9 +10,9 @@ defineProps({ to: String, class: String })
   <li>
     <RouterLink 
       :to="to" 
-      active-class="bg-gray-700" 
       :class="class"
-      class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group text-white hover:bg-gray-700">
+      active-class="bg-gray-700" 
+      class="flex items-center w-full p-2 transition duration-75 rounded-lg group text-white hover:bg-gray-700">
       <slot />
     </RouterLink>
   </li>

@@ -91,7 +91,7 @@ onMounted( async () => {
               :to="`/chat/${convo.id}`" 
               @click="closeOnSmallScreen"
               :title="convo.title">
-              <div class="truncate hover:not-sr-only">
+              <div class="truncate">
                 {{ convo.title }}
               </div>
             </NavDropdownLink>

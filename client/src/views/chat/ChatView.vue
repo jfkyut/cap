@@ -28,18 +28,17 @@ onMounted(() => {
   }, 50)
 });
 
-const messages = computed(() => {
-  const chatResult = chat.value.find((chat) => chat.id === chatId.value);
-
-  return chatResult?.messages;
+const currentChat = computed(() => {
+  return chat.value.find((chat) => chat.id === chatId.value);
 })
 
-watch([temporaryMessage, messages], () => {
+watch([temporaryMessage, currentChat], () => {
   setChatViewHeight()
 })
 
 watch(chatId, (id) => {
   getChatMessages(id)
+  document.title = `${currentChat.value?.title || 'Chat'} | VTASVP`;
 })
 
 </script>
@@ -47,7 +46,7 @@ watch(chatId, (id) => {
 <template>
   <div class="relative min-h-[88vh]">
     <div class="w-full text-black relative h-[80vh] overflow-y-auto space-y-6 py-6" ref="chatContainerRef">
-      <Messages :messages="messages" />
+      <Messages :messages="currentChat?.messages" />
       <TemporaryMessages />
     </div>
     <div class="w-full absolute bottom-4">

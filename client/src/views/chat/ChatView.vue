@@ -16,7 +16,7 @@ const chatId = computed(() => route.params.id);
 
 onMounted( () => {
   setTimeout(() => {
-    (route.name === 'chat') && getChatMessages(chatId)
+    (route.name === 'chat') && getChatMessages(chatId.value)
   }, 100)
 });
 

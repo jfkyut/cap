@@ -1,5 +1,11 @@
 <script setup>
 
+defineProps({
+  type: {
+    type: String,
+    default: 'button'
+  }
+})
 const emit = defineEmits(['click', 'mouseover', 'mouseout']);
 
 </script>
@@ -7,6 +13,7 @@ const emit = defineEmits(['click', 'mouseover', 'mouseout']);
 <template>
   <li>
     <button
+      :type="type"
       @click="emit('click')"
       @mouseover="emit('mouseover')"
       @mouseout="emit('mouseout')"

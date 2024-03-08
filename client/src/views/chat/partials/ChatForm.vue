@@ -6,6 +6,8 @@ import { useToast } from 'vue-toastification';
 import PresetMessages from './PresetMessages.vue';
 import { useChatService } from '@/services/chatService';
 import { useRoute, useRouter } from 'vue-router';
+import ExtraButton from '@/components/buttons/ExtraButton.vue';
+import ChatOptions from './ChatOptions.vue';
 
 const emit = defineEmits(['submitted']);
 
@@ -80,7 +82,8 @@ watch(routePath, () => {
   <form @submit.prevent="submitMessage" class="flex justify-center">
     <label for="chat" class="sr-only">Your message</label>
     <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-700 border dark:border-gray-600 w-full max-w-3xl shadow">
-      <PresetMessages />
+      <!-- <PresetMessages /> -->
+      <ChatOptions />
       <textarea 
         @keydown="handleKeyDown"
         v-model="message" 

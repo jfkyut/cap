@@ -10,7 +10,7 @@ import { storeToRefs } from 'pinia';
 
 const route = useRoute();
 const { getChatMessages } = useChatStore();
-const { chat, temporaryMessage } = storeToRefs(useChatStore());
+const { chats, temporaryMessage, chat } = storeToRefs(useChatStore());
 
 const chatId = computed(() => route.params.id);
 
@@ -29,11 +29,15 @@ onMounted(() => {
 });
 
 const currentChat = computed(() => {
-  return chat.value.find((chat) => chat.id === chatId.value);
+  return chats.value.find((chat) => chat.id === chatId.value);
 })
 
 watch([temporaryMessage, currentChat], () => {
   setChatViewHeight()
+})
+
+watch(currentChat, (current) => {
+  chat.value = current;
 })
 
 watch(chatId, (id) => {
@@ -50,7 +54,7 @@ watch(chatId, (id) => {
       <TemporaryMessages />
     </div>
     <div class="w-full absolute bottom-4">
-      <ChatForm @submitted="setChatViewHeight" :currentChat="currentChat" />
+      <ChatForm @submitted="setChatViewHeight" />
     </div>
   </div>
 </template>

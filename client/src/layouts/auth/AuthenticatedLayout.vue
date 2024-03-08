@@ -15,8 +15,8 @@ import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 
-const { chat } = storeToRefs(useChatStore());
-const { getChats } = useChatService();
+const { chats } = storeToRefs(useChatStore());
+const { getChatsRequest } = useChatService();
 const profileStore = useProfileStore();
 const themeStore = useThemeStore();
 const sidebarStore = useSidebarStore();
@@ -48,9 +48,9 @@ watch(isChatDrodownLinkShow, (chatDropdownState) => {
 const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
 
 onMounted( async () => {
-  const { data } = await getChats();
+  const { data } = await getChatsRequest();
 
-  chat.value = data;
+  chats.value = data;
 })
 
 </script>
@@ -106,14 +106,14 @@ onMounted( async () => {
               </div>
             </ChatNavDropdownLink>
             <ChatNavDropdownLink 
-              v-for="(convo, index) in chat" 
+              v-for="(chat, index) in chats" 
               :key="index"
-              :to="`/chat/${convo.id}`" 
+              :to="`/chat/${chat.id}`" 
               @click="closeOnSmallScreen"
-              :chat="convo"
-              :title="convo.title">
+              :chat="chat"
+              :title="chat.title">
               <div class="truncate">
-                {{ convo.title }}
+                {{ chat.title }}
               </div>
             </ChatNavDropdownLink>
           </NavDropdownTrigger>

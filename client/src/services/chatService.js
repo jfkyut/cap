@@ -19,22 +19,32 @@ export const useChatService = () => {
     })
   }
 
-  const getChats = () => {
+  const getChatsRequest = () => {
     return sendApiRequest( async () => {
       return await axios.get('/api/chat');
     })
   }
 
-  const getMessages = (id) => {
+  const getMessagesRequest = (id) => {
     return sendApiRequest( async () => {
       return await axios.get(`/api/chat/${id}`);
     });
   }
 
+  const updateChatRequest = (id, form) => {
+    return sendApiRequest( async () => {
+      await getCsrfToken();
+      await axios.put(`/api/chat/${id}`, form);
+
+      return true;
+    })
+  }
+
   return { 
     sendChatRequest, 
     sendMessageRequest, 
-    getChats, 
-    getMessages 
+    getChatsRequest, 
+    getMessagesRequest,
+    updateChatRequest
   }
 }

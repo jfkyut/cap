@@ -20,7 +20,7 @@ class MessageService
 		$message->save();
 
 		return $message->where('id', $message->id)
-                       ->without('user')
-                       ->first();
+                        ->without('user')
+                        ->first();
 	}
 }

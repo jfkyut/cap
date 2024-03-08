@@ -10,6 +10,7 @@ use App\Services\MessageService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Chat\ChatResource;
 use App\Http\Requests\Chat\ChatStoreRequest;
+use App\Http\Requests\Chat\ChatUpdateRequest;
 
 class ChatController extends Controller
 {
@@ -75,9 +76,12 @@ class ChatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chat $chat)
+    public function update(ChatUpdateRequest $request, Chat $chat)
     {
-        //
+        $chat->update($request->validated());
+        $chat->save();
+
+        return $chat;
     }
 
     /**

@@ -14,7 +14,7 @@ class ChatbotService
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => 'You are ChatPAPI, Virtual Tourist Assistant Chatbot. Reply in a json format. format: ' . Storage::get("format.json"),
+                    'content' => 'You are ChatPAPI, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
                 ],
                 [
                     'role' => 'user',

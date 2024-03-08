@@ -2,26 +2,35 @@
 
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
+import PresetMessages from './PresetMessages.vue';
+import { ref } from 'vue';
+import EditChat from './EditChat.vue';
+
+const isDropdownShow = ref(false);
+
+defineProps({ currentChat: Object })
 
 </script>
 
 <template>
   <div class="relative">
-    <button type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+    <button 
+      @mouseover="isDropdownShow = true"
+      @mouseout="isDropdownShow = false"
+      type="button" 
+      class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
       <i class="fa fa-ellipsis-vertical"></i>
       <span class="sr-only">Options</span>
     </button>
 
-    <DropdownMenu position="bottom-14">
-      <DropdownButton>
-        <i class="fa fa-message mr-2"></i>
-        <span>Preset messages</span>
-      </DropdownButton>
-      <DropdownButton>
-        <i class="fa fa-edit mr-2"></i>
-        <span>Edit chat title</span>
-      </DropdownButton>
-      <DropdownButton>
+    <DropdownMenu 
+      @mouseover="isDropdownShow = true"
+      @mouseout="isDropdownShow = false"
+      :show="isDropdownShow" 
+      position="bottom-14">
+      <PresetMessages />
+      <EditChat />
+      <DropdownButton class="hover:text-red-600 dark:hover:text-red-400">
         <i class="fa fa-trash mr-2"></i>
         <span>Delete chat</span>
       </DropdownButton>

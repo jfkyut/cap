@@ -4,9 +4,12 @@ import GenericModal from '@/components/modals/GenericModal.vue';
 import { ref } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
+import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
+import { useRoute } from 'vue-router';
 
 const { message } = storeToRefs(useChatStore());
 
+const route = useRoute();
 const isModalShow = ref(false);
 
 const openModal = () => isModalShow.value = true;
@@ -37,12 +40,17 @@ const setMessage = (currentMessage) => {
 </script>
 
 <template>
-  <div>
-    <button @click="openModal" type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-      <i class="fa fa-message"></i>
-      <span class="sr-only">Messages</span>
-    </button>
+  <button v-if="route.name === 'new-chat'" @click="openModal" type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+    <i class="fa fa-message"></i>
+    <span class="sr-only">Messages</span>
+  </button>
 
+  <DropdownButton @click="openModal" v-else-if="route.name === 'chat'">
+    <i class="fa fa-message mr-2"></i>
+    <span>Preset messages</span>
+  </DropdownButton>
+
+  <div>
     <GenericModal
       title="Preset messages"
       :show="isModalShow"

@@ -50,7 +50,7 @@ watch(chatId, (id) => {
       <TemporaryMessages />
     </div>
     <div class="w-full absolute bottom-4">
-      <ChatForm @submitted="setChatViewHeight" />
+      <ChatForm @submitted="setChatViewHeight" :currentChat="currentChat" />
     </div>
   </div>
 </template>

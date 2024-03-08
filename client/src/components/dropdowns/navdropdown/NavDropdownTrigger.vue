@@ -1,20 +1,12 @@
 <script setup>
 
-import { ref } from 'vue';
+const emit = defineEmits(['toggle-dropdown']);
 
-const isLinksShow = ref(false);
-
-const toggleDropdownLinks = () => {
-  (!isLinksShow.value)
-    ? isLinksShow.value = true
-    : isLinksShow.value = false
-}
-
-defineProps({ buttonText: String, iconClass: String })
+defineProps({ buttonText: String, iconClass: String, isLinksShow: Boolean })
 </script>
 
 <template>
-  <button @click="toggleDropdownLinks" class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group w-full">
+  <button @click="emit('toggle-dropdown')" class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group w-full">
     <div class="flex justify-between items-end w-full">
       <div>
         <span class="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white">

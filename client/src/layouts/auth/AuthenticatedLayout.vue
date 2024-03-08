@@ -9,10 +9,11 @@ import ExtraButton from '@/components/buttons/ExtraButton.vue';
 import NavDropdownTrigger from '@/components/dropdowns/navdropdown/NavDropdownTrigger.vue';
 import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useChatService } from '@/services/chatService';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
 const { chat } = storeToRefs(useChatStore());
 const { getChats } = useChatService();
@@ -31,6 +32,18 @@ const toggleSidebar = () => {
     ? sidebarStore.setHide()
     : sidebarStore.setShow()
 }
+
+const isChatDrodownLinkShow = ref(JSON.parse(sessionStorage.getItem('chat-dropdown')) || false);
+
+const toggleChatDropdown = () => {
+  (!isChatDrodownLinkShow.value)
+    ? isChatDrodownLinkShow.value = true
+    : isChatDrodownLinkShow.value = false
+}
+
+watch(isChatDrodownLinkShow, (chatDropdownState) => {
+  sessionStorage.setItem('chat-dropdown', JSON.stringify(chatDropdownState));
+})
 
 const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
 
@@ -80,7 +93,7 @@ onMounted( async () => {
           </RouterLink>
         </li>
         <li>
-          <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot">
+          <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot" @toggle-dropdown="toggleChatDropdown" :is-links-show="isChatDrodownLinkShow">
             <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen" title="New Chat">
               <span>New chat</span>
               <i class="fa fa-pen"></i>

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use Illuminate\Http\Request;
 use App\Services\ChatService;
 use App\Services\ChatbotService;
 use App\Services\MessageService;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\Chat\ChatResource;
 use App\Http\Requests\Chat\ChatStoreRequest;
 use App\Http\Requests\Chat\ChatUpdateRequest;
 
@@ -89,6 +87,8 @@ class ChatController extends Controller
      */
     public function destroy(Chat $chat)
     {
-        //
+        $chat->delete();
+
+        return response()->noContent();
     }
 }

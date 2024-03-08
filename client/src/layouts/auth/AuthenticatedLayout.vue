@@ -6,8 +6,8 @@ import { useProfileStore } from '@/stores/profile';
 import { useSidebarStore } from '@/stores/sidebar';
 import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
-import NavDropdownTrigger from '@/components/dropdowns/navdropdown/NavDropdownTrigger.vue';
-import NavDropdownLink from '@/components/dropdowns/navdropdown/NavDropdownLink.vue';
+import NavDropdownTrigger from '@/components/dropdowns/navDropdown/NavDropdownTrigger.vue';
+import ChatNavDropdownLink from '@/components/dropdowns/navDropdown/NavDropdownLink.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
 import { onMounted, watch } from 'vue';
 import { useChatService } from '@/services/chatService';
@@ -94,20 +94,28 @@ onMounted( async () => {
         </li>
         <li>
           <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot" @toggle-dropdown="toggleChatDropdown" :is-links-show="isChatDrodownLinkShow">
-            <NavDropdownLink class="flex justify-between" to="/chat" @click="closeOnSmallScreen" title="New Chat">
-              <span>New chat</span>
-              <i class="fa fa-pen"></i>
-            </NavDropdownLink>
-            <NavDropdownLink 
+            <ChatNavDropdownLink 
+              to="/chat" 
+              @click="closeOnSmallScreen" 
+              title="New Chat"
+              class="bg-gray-800"
+              :new-chat="true">
+              <div class=" flex items-center justify-between">
+                <span>New chat</span>
+                <i class="fa fa-pen"></i>
+              </div>
+            </ChatNavDropdownLink>
+            <ChatNavDropdownLink 
               v-for="(convo, index) in chat" 
               :key="index"
               :to="`/chat/${convo.id}`" 
               @click="closeOnSmallScreen"
+              :chat="convo"
               :title="convo.title">
               <div class="truncate">
                 {{ convo.title }}
               </div>
-            </NavDropdownLink>
+            </ChatNavDropdownLink>
           </NavDropdownTrigger>
         </li>
         <li>

@@ -40,11 +40,20 @@ export const useChatService = () => {
     })
   }
 
+  const destroyChatRequest = (id) => {
+    return sendApiRequest( async () => {
+      await axios.delete(`/api/chat/${id}`);
+
+      return true;
+    })
+  }
+
   return { 
     sendChatRequest, 
     sendMessageRequest, 
     getChatsRequest, 
     getMessagesRequest,
-    updateChatRequest
+    updateChatRequest,
+    destroyChatRequest
   }
 }

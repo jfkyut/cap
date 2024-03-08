@@ -1,12 +1,12 @@
 <script setup>
 
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
-import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
 import PresetMessages from './PresetMessages.vue';
 import { ref } from 'vue';
 import EditChat from './EditChat.vue';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
+import DeleteChat from './DeleteChat.vue';
 
 const { chat } = storeToRefs(useChatStore());
 
@@ -33,10 +33,7 @@ const isDropdownShow = ref(false);
       position="bottom-14">
       <PresetMessages />
       <EditChat :chat="chat" />
-      <DropdownButton class="hover:text-red-600 dark:hover:text-red-400">
-        <i class="fa fa-trash mr-2"></i>
-        <span>Delete chat</span>
-      </DropdownButton>
+      <DeleteChat :chat="chat" />
     </DropdownMenu>
   </div>
 </template>

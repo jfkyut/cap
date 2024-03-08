@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum'])
         Route::post('/chat', [ChatController::class, 'store']);
         Route::get('/chat/{chat}', [ChatController::class, 'show']);
         Route::put('/chat/{chat}', [ChatController::class, 'update']);
+        Route::delete('/chat/{chat}', [ChatController::class, 'destroy']);
 
         Route::post('/message/{chat}', [MessageController::class, 'store']);
     });

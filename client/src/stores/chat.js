@@ -46,6 +46,12 @@ export const useChatStore = defineStore('chat', () => {
     })
   }
 
+  const destroyCurrentChat = (id) => {
+    chats.value = chats.value.filter((chat) => {
+      return chat.id !== id;
+    })
+  }
+
   return { 
     message, 
     messages,
@@ -55,6 +61,7 @@ export const useChatStore = defineStore('chat', () => {
     addChat,
     addMessage,
     getChatMessages,
-    updateCurrentChat
+    updateCurrentChat,
+    destroyCurrentChat
   }
 })

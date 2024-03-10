@@ -18,8 +18,15 @@ const isLoading = ref(false);
 
 const form = ref({
   email: null,
-  password: null
+  password: null,
+  remember: false
 })
+
+const onChangeRemember = (e) => {
+  (e.target.checked)
+    ? form.value.remember = true
+    : form.value.remember = false
+}
 
 const loginUser = async () => {
   isLoading.value = true;  
@@ -60,7 +67,7 @@ onMounted(() => {
     <div class="flex items-start">
       <div class="flex items-start">
         <div class="flex items-center h-5">
-          <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+          <input id="remember" type="checkbox" @change="onChangeRemember" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
         </div>
         <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
       </div>

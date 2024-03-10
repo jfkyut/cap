@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Http\Requests\Chat\ChatStoreRequest;
 use App\Services\ChatbotService;
 use App\Services\MessageService;
+use App\Http\Requests\Chat\ChatStoreRequest;
 
 class MessageController extends Controller
 {
@@ -20,19 +20,24 @@ class MessageController extends Controller
 
     public function store(ChatStoreRequest $request, Chat $chat)
     {
-        $data = $this->chatbotService->initializeData($request->validated('message'));
+        $previousMessages = $this->messageService->getPreviousMessages($chat);
+
+        $allMessages = $this->messageService->initializeAllMessages(
+            $previousMessages, 
+            $request->validated('message')
+        );
+
+        $data = $this->chatbotService->initializeData($allMessages);
 
         $response = $this->chatbotService->generateResponse($data);
 
-        if (! $response) {
-            return abort(500, 'Something went wrong.');
-        } else {
-            $message = $this->messageService->createMessages(
-                $request->validated('message'),
-                $response->content,
-                $chat
-            );
-        }
+        $message = $this->messageService->createMessages(
+            $request->validated('message'),
+            $response->content,
+            $chat
+        );
+
+        $this->messageService->addMessageToSession($message, $chat);
 
         return response([
             'chat_id' => $chat->id,

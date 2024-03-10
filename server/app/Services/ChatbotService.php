@@ -7,19 +7,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ChatbotService
 {
-    public function initializeData(string $message): array
+    public function initializeData(array $messages): array
     {
+        $allMessages = [
+            [
+                'role' => 'system',
+                'content' => 'You are ChatPAPI, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
+            ]
+        ];
+
         return [
             'model' => env('OPENAI_MODEL'),
-            'messages' => [
-                [
-                    'role' => 'system',
-                    'content' => 'You are ChatPAPI, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
-                ],
-                [
-                    'role' => 'user',
-                    'content' => $message
-                ]
+            'messages' => array_merge($allMessages, $messages),
+            "response_format" => [
+                "type" => "json_object"
             ]
         ];
     }
@@ -33,6 +34,6 @@ class ChatbotService
 
         return $response->ok()
             ? json_decode($response->json()['choices'][0]['message']['content'])
-            : false;
+            : abort(500, 'Somewthing went wrong.');
     }
 }

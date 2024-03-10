@@ -7,6 +7,7 @@ use App\Services\ChatService;
 use App\Services\ChatbotService;
 use App\Services\MessageService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Chat\ChatStoreRequest;
 use App\Http\Requests\Chat\ChatUpdateRequest;
 
@@ -42,23 +43,23 @@ class ChatController extends Controller
      */
     public function store(ChatStoreRequest $request)
     {
-        $data = $this->chatbotService->initializeData($request->validated('message'));
+        $newMessage = $this->messageService->initializeFirstMessage($request->validated('message'));
+
+        $data = $this->chatbotService->initializeData($newMessage);
+        
         $response = $this->chatbotService->generateResponse($data);
 
-        if (!$response) {
-            return abort(500, 'Something went wrong.');
+        $chat = $this->chatService->createChat($response->title);
 
-        } else {
-            $chat = $this->chatService->createChat($response->title);
+        $message = $this->messageService->createMessages(
+            $request->validated('message'), 
+            $response->content, 
+            $chat
+        );
 
-            $this->messageService->createMessages(
-                $request->validated('message'), 
-                $response->content, 
-                $chat
-            );
+        $this->messageService->addMessageToSession($message, $chat);
 
-            return response($chat->find($chat->id)->load('messages'));
-        }
+        return response($chat->find($chat->id)->load('messages'));
     }
 
     /**

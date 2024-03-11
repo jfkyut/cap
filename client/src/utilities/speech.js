@@ -2,23 +2,31 @@ import { computed, ref } from 'vue';
 
 export const useSpeechSynthesis = () => {
 
-  const synthesis = ref(window.speechSynthesis);
+  const synthesis = window.speechSynthesis;
 
-  const isSpeaking = computed(() => synthesis.value.speaking);
+  const isSpeaking = ref(false);
 
   const isSupported = computed(() => {
-    return (!synthesis.value) 
+    return (!synthesis) 
             ? false 
             : true
   })
 
   const speak = (text) => {
-    (!isSpeaking.value) && synthesis.value.speak(new SpeechSynthesisUtterance(text));
+    if (!isSpeaking.value) {
+      const utterance = new SpeechSynthesisUtterance(text);
 
-    console.log(isSpeaking.value);
+      utterance.onstart = () => isSpeaking.value = true;
+      utterance.onend = () => isSpeaking.value = false;
+
+      synthesis.speak(utterance);
+    }
   }
 
-  const stop = () => synthesis.value.cancel()
+  const stop = () => {
+    synthesis.cancel()
+    isSpeaking.value = false; 
+  }
 
   return {
     isSupported,

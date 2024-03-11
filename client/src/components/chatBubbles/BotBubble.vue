@@ -6,7 +6,7 @@ import { useSpeechSynthesis } from '@/utilities/speech';
 
 defineProps({ message: String })
 
-const { speak, stop, isSpeaking } = useSpeechSynthesis();
+const { speak, stop, isSpeaking, isSupported } = useSpeechSynthesis();
 const { copyTextToClipboard } = useGeneralUtilities();
 
 
@@ -28,12 +28,14 @@ const { copyTextToClipboard } = useGeneralUtilities();
           <div class="h-3 w-3 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
         </div>
         <div v-if="message !== '' || message" class="mt-3 flex gap-1 justify-end">
-          <ExtraButton @click="speak('hellow')" v-if="!isSpeaking">
-            <i class="fa fa-play"></i>
-          </ExtraButton>
-          <ExtraButton v-else @click="stop">
-            <i class="fa fa-stop"></i>
-          </ExtraButton>
+          <div v-if="isSupported">
+            <ExtraButton @click="speak(message)" v-if="!isSpeaking">
+              <i class="fa fa-play"></i>
+            </ExtraButton>
+            <ExtraButton @click="stop" v-else>
+              <i class="fa fa-stop"></i>
+            </ExtraButton>
+          </div>
           <ExtraButton @click="copyTextToClipboard(message)">
             <i class="fa fa-clipboard"></i>
           </ExtraButton>

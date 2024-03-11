@@ -1,8 +1,14 @@
 <script setup>
 
 import ExtraButton from '../buttons/ExtraButton.vue';
+import { useGeneralUtilities } from '@/utilities/general';
+import { useSpeechSynthesis } from '@/utilities/speech';
 
 defineProps({ message: String })
+
+const { speak, stop, isSpeaking } = useSpeechSynthesis();
+const { copyTextToClipboard } = useGeneralUtilities();
+
 
 </script>
 
@@ -22,10 +28,13 @@ defineProps({ message: String })
           <div class="h-3 w-3 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
         </div>
         <div v-if="message !== '' || message" class="mt-3 flex gap-1 justify-end">
-          <ExtraButton>
+          <ExtraButton @click="speak('hellow')" v-if="!isSpeaking">
             <i class="fa fa-play"></i>
           </ExtraButton>
-          <ExtraButton>
+          <ExtraButton v-else @click="stop">
+            <i class="fa fa-stop"></i>
+          </ExtraButton>
+          <ExtraButton @click="copyTextToClipboard(message)">
             <i class="fa fa-clipboard"></i>
           </ExtraButton>
         </div>

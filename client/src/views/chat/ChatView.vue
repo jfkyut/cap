@@ -53,7 +53,7 @@ watch(chatId, (id) => {
     <EmptyMessagePlaceholder v-if="!currentChat?.messages && !temporaryMessage" />
     <div 
       v-else
-      class="w-full text-black relative h-[79vh] overflow-y-auto space-y-6 py-6" 
+      class="w-full text-black relative h-[79vh] overflow-y-auto space-y-6 py-6 scroll-smooth" 
       ref="chatContainerRef">
       <Messages :messages="currentChat?.messages" />
       <TemporaryMessages />

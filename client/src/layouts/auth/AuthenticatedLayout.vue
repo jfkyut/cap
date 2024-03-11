@@ -93,7 +93,7 @@ onMounted( async () => {
           </RouterLink>
         </li>
         <li>
-          <NavDropdownTrigger button-text="ChatBot" icon-class="fa fa-robot" @toggle-dropdown="toggleChatDropdown" :is-links-show="isChatDrodownLinkShow">
+          <NavDropdownTrigger button-text="ChadGPT" icon-class="fa fa-robot" @toggle-dropdown="toggleChatDropdown" :is-links-show="isChatDrodownLinkShow">
             <ChatNavDropdownLink 
               to="/chat" 
               @click="closeOnSmallScreen" 

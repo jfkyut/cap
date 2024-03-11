@@ -12,7 +12,7 @@ class ChatbotService
         $allMessages = [
             [
                 'role' => 'system',
-                'content' => 'You are ChatPAPI, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
+                'content' => 'You are ChadGPT, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
             ]
         ];
 

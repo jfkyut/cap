@@ -7,6 +7,7 @@ import { computed, onMounted, watch, ref } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import EmptyMessagePlaceholder from './partials/EmptyMessagePlaceholder.vue';
 
 const route = useRoute();
 const { getChatMessages } = useChatStore();
@@ -49,7 +50,11 @@ watch(chatId, (id) => {
 
 <template>
   <div class="relative min-h-[88vh]">
-    <div class="w-full text-black relative h-[79vh] overflow-y-auto space-y-6 py-6" ref="chatContainerRef">
+    <EmptyMessagePlaceholder v-if="!currentChat?.messages && !temporaryMessage" />
+    <div 
+      v-else
+      class="w-full text-black relative h-[79vh] overflow-y-auto space-y-6 py-6" 
+      ref="chatContainerRef">
       <Messages :messages="currentChat?.messages" />
       <TemporaryMessages />
     </div>

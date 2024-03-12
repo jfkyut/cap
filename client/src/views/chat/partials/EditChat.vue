@@ -42,7 +42,7 @@ const updateChatTitle = async (id) => {
 </script>
 
 <template>
-  <DropdownButton @click="openModal(chat.title)" class="hover:text-blue-600 dark:hover:text-blue-400">
+  <DropdownButton @click="openModal(chat.title)" class="hover:text-blue-600 dark:hover:text-blue-500">
     <i class="fa fa-edit mr-2"></i>
     <span>Edit chat title</span>
   </DropdownButton>

@@ -38,7 +38,7 @@ const destroyChat = async (id) => {
 </script>
 
 <template>
-  <DropdownButton @click="openModal" class="hover:text-red-600 dark:hover:text-red-400">
+  <DropdownButton @click="openModal" class="hover:text-red-600 dark:hover:text-red-500">
     <i class="fa fa-trash mr-2"></i>
     <span>Delete chat</span>
   </DropdownButton>

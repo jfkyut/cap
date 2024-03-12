@@ -35,3 +35,48 @@ export const useSpeechSynthesis = () => {
     stop
   }
 }
+
+export const useSpeechRecognition = () => {
+  
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || false);
+
+  recognition.lang = "en-US";
+  recognition.interimResults = true;
+
+  const isSupported = computed(() => {
+    return (!recognition) 
+            ? false 
+            : true
+  })
+
+  const transcript = ref(null);
+
+  const listen = () => {
+    recognition.start()
+  }
+
+  const cancel = () => {
+    recognition.cancel();
+  }
+
+  const stop = () => {
+    recognition.stop();
+  }
+
+  recognition.onresult = (e) => {
+    console.log("Speech recognition result:", e.results);
+    transcript.value = e.results[0][0].transcript;
+  }
+
+  recognition.onerror = (e) => {
+    console.error("Speech recognition error:", e.error);
+  }  
+
+  return {
+    isSupported,
+    transcript,
+    listen,
+    cancel,
+    stop
+  }
+}

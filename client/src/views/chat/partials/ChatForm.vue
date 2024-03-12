@@ -89,8 +89,15 @@ watch(transcript, (transcript) => {
   <form @submit.prevent="submitMessage" class="flex justify-center">
     <label for="chat" class="sr-only">Your message</label>
     <div class="bg-white flex items-end px-3 py-2 rounded-lg dark:bg-gray-700 border dark:border-gray-600 w-full max-w-3xl shadow">
-      <PresetMessages v-if="route.name === 'new-chat'" />
-      <ChatOptions v-else-if="route.name === 'chat'" />
+      <div v-if="!message">
+        <PresetMessages v-if="route.name === 'new-chat'" />
+        <ChatOptions v-else-if="route.name === 'chat'" />
+      </div>
+      <div v-else>
+        <button @click="message = null" type="button" class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-red-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-red-400 dark:hover:bg-gray-600">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
       <textarea 
         @keydown="handleKeyDown"
         v-model="message" 

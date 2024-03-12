@@ -32,10 +32,10 @@ const closeModal = () => isModalShow.value = false;
 const updateChatTitle = async (id) => {
   await updateChatRequest(id, form.value) 
     ? (
-      updateCurrentChat(id, form.value),
-      toast.success("Successfully updated current chat."),
-      closeModal()
-    )
+        updateCurrentChat(id, form.value),
+        toast.success("Successfully updated current chat."),
+        closeModal()
+      )
     : openModal()
 }
 

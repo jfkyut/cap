@@ -19,7 +19,7 @@ const emit = defineEmits(['click', 'mouseover', 'mouseout']);
       @mouseover="emit('mouseover')"
       @mouseout="emit('mouseout')"
       :class="class"
-      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full text-start">
+      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 w-full text-start">
       <slot/>
     </button>
   </li>

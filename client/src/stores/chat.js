@@ -18,7 +18,7 @@ export const useChatStore = defineStore('chat', () => {
 
   const getChatMessages = (id) => {
     chats.value.forEach( async (chat) => {
-      if (chat.id === id && chat.messages === undefined) {
+      if (chat.id === id && !chat.messages) {
         const { data } = await getMessagesRequest(id);
         
         chat.messages = data.messages;

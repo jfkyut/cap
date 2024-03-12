@@ -18,9 +18,11 @@ const chatId = computed(() => route.params.id);
 const chatContainerRef = ref(null);
 
 const setChatViewHeight = async () => {
-  setTimeout(() => {
-    chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
-  }, 50)
+  if (chatContainerRef.value !== null) {
+    setTimeout(() => {
+      chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
+    }, 100)
+  }
 }
 
 onMounted(() => {
@@ -33,7 +35,7 @@ const currentChat = computed(() => {
   return chats.value.find((chat) => chat.id === chatId.value);
 })
 
-watch([temporaryMessage, currentChat], () => {
+watch([temporaryMessage, currentChat, chatContainerRef], () => {
   setChatViewHeight()
 })
 

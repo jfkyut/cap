@@ -42,6 +42,7 @@ export const useSpeechRecognition = () => {
 
   recognition.lang = "en-US";
   recognition.interimResults = true;
+  recognition.continuous = true;
 
   const isSupported = computed(() => {
     return (!recognition) 
@@ -49,22 +50,25 @@ export const useSpeechRecognition = () => {
             : true
   })
 
+  const isListening = ref(false);
   const transcript = ref(null);
 
   const listen = () => {
-    recognition.start()
+    recognition.start();
+    isListening.value = true
   }
 
   const cancel = () => {
     recognition.cancel();
+    isListening.value = false;
   }
 
   const stop = () => {
     recognition.stop();
+    isListening.value = false;
   }
 
   recognition.onresult = (e) => {
-    console.log("Speech recognition result:", e.results);
     transcript.value = e.results[0][0].transcript;
   }
 
@@ -72,9 +76,16 @@ export const useSpeechRecognition = () => {
     console.error("Speech recognition error:", e.error);
   }  
 
+  recognition.onend = () => {
+    if (isListening.value) {
+      listen()
+    }
+  }
+
   return {
     isSupported,
     transcript,
+    isListening,
     listen,
     cancel,
     stop

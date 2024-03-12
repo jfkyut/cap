@@ -7,11 +7,12 @@ import PresetMessages from './PresetMessages.vue';
 import { useChatService } from '@/services/chatService';
 import { useRoute, useRouter } from 'vue-router';
 import ChatOptions from './ChatOptions.vue';
-import Microphone from './Microphone.vue';
+import { useSpeechRecognition } from '@/utilities/speech';
 
 const emit = defineEmits(['submitted']);
 
 const { sendChatRequest, sendMessageRequest } = useChatService();
+const { transcript, listen, isListening, stop } = useSpeechRecognition();
 
 const router = useRouter();
 const route = useRoute();
@@ -37,6 +38,8 @@ watch(message, (message) => {
 })
 
 const submitMessage = async () => {
+  stop();
+
   if (message.value === null || message.value === '') {
     toast.warning('Warning. Message field is empty.');
     return;
@@ -50,16 +53,16 @@ const submitMessage = async () => {
 
     addChat(data);
     temporaryMessage.value = null;
-
     router.push(`/chat/${data.id}`);
+
   } else if (route.name === 'chat') {
     const { data } = await sendMessageRequest(temporaryMessage.value, route.params.id)
 
     addMessage(route.params.id, data.messages);
     temporaryMessage.value = null;
   }
-  emit('submitted');
 
+  emit('submitted');
 }
 
 const handleKeyDown = (e) => {
@@ -74,6 +77,10 @@ onMounted(() => textAreaRef.value.focus())
 watch(routePath, () => {
   textAreaRef.value.focus()
   message.value = null
+})
+
+watch(transcript, (transcript) => {
+  message.value = transcript
 })
 
 </script>
@@ -92,13 +99,27 @@ watch(routePath, () => {
         rows="1" 
         class="block outline-none mx-4 p-2.5 w-full resize-none text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
         placeholder="Your message..." />
+
+      <!-- submit message button -->
       <button v-if="message" type="submit" class="inline-flex mb-1 justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
         <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
           <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
         </svg>
         <span class="sr-only">Send message</span>
       </button>
-      <Microphone />
+      <!-- submit message button end -->
+
+      <!-- microphone -->
+      <button 
+        v-else
+        @click="listen" 
+        type="button" 
+        :class="[isListening ? 'text-red-600 dark:textred-500' : 'text-blue-600 dark:text-blue-500']"
+        class="inline-flex justify-center p-2 rounded-full cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600">
+        <i class="fa fa-microphone w-5 h-5"></i>
+        <span class="sr-only">Microphone</span>
+      </button>
+      <!-- microphone end -->
     </div>
   </form>
 </template>

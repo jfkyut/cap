@@ -8,7 +8,7 @@ const authenticatedRoutes = [
     path: '/',
     alias: ['/home', '/dashboard'],
     name: 'home',
-    component: () => import('@/views/app/HomeView.vue'),
+    component: () => import('@/views/home/HomeView.vue'),
     meta: {
       layout: AuthenticatedLayout,
       title: 'Home'

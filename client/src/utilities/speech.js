@@ -38,7 +38,7 @@ export const useSpeechSynthesis = () => {
 
 export const useSpeechRecognition = () => {
   
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || false);
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition) || false;
 
   recognition.lang = "en-US";
   recognition.interimResults = true;

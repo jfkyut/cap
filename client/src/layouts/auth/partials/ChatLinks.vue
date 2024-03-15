@@ -27,7 +27,8 @@ watch(isChatDrodownLinkShow, (chatDropdownState) => {
     button-text="ChadGPT" 
     icon-class="fa fa-robot" 
     @toggle-dropdown="toggleChatDropdown" 
-    :is-links-show="isChatDrodownLinkShow">
+    :is-links-show="isChatDrodownLinkShow"
+    route-contains="chat">
     <NavDropdownLink 
       to="/chat" 
       @click="emit('onAccessLink')" 

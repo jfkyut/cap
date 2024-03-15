@@ -23,7 +23,8 @@ watch(isTravelDropdownLinkShow, (chatDropdownState) => {
     button-text="Travels" 
     icon-class="fa fa-globe" 
     @toggle-dropdown="toggleChatDropdown" 
-    :is-links-show="isTravelDropdownLinkShow">
+    :is-links-show="isTravelDropdownLinkShow"
+    route-contains="travel">
     <NavDropdownLink 
       to="/travel/create" 
       @click="closeOnSmallScreen" 

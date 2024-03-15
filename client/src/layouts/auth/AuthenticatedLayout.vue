@@ -6,14 +6,14 @@ import { useProfileStore } from '@/stores/profile';
 import { useSidebarStore } from '@/stores/sidebar';
 import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
-import NavDropdownTrigger from '@/components/dropdowns/navDropdown/NavDropdownTrigger.vue';
-import ChatNavDropdownLink from '@/components/dropdowns/navDropdown/NavDropdownLink.vue';
+import TravelLinks from './partials/TravelLinks.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
 import { onMounted, watch } from 'vue';
 import { useChatService } from '@/services/chatService';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import ChatLinks from './partials/ChatLinks.vue';
 
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
@@ -32,18 +32,6 @@ const toggleSidebar = () => {
     ? sidebarStore.setHide()
     : sidebarStore.setShow()
 }
-
-const isChatDrodownLinkShow = ref(JSON.parse(sessionStorage.getItem('chat-dropdown')) || false);
-
-const toggleChatDropdown = () => {
-  (!isChatDrodownLinkShow.value)
-    ? isChatDrodownLinkShow.value = true
-    : isChatDrodownLinkShow.value = false
-}
-
-watch(isChatDrodownLinkShow, (chatDropdownState) => {
-  sessionStorage.setItem('chat-dropdown', JSON.stringify(chatDropdownState));
-})
 
 const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
 
@@ -93,30 +81,10 @@ onMounted( async () => {
           </RouterLink>
         </li>
         <li>
-          <NavDropdownTrigger button-text="ChadGPT" icon-class="fa fa-robot" @toggle-dropdown="toggleChatDropdown" :is-links-show="isChatDrodownLinkShow">
-            <ChatNavDropdownLink 
-              to="/chat" 
-              @click="closeOnSmallScreen" 
-              title="New Chat"
-              class="bg-gray-800"
-              :new-chat="true">
-              <div class=" flex items-center justify-between">
-                <span>New chat</span>
-                <i class="fa fa-pen"></i>
-              </div>
-            </ChatNavDropdownLink>
-            <ChatNavDropdownLink 
-              v-for="(chat, index) in chats" 
-              :key="index"
-              :to="`/chat/${chat.id}`" 
-              @click="closeOnSmallScreen"
-              :chat="chat"
-              :title="chat.title">
-              <div class="truncate">
-                {{ chat.title }}
-              </div>
-            </ChatNavDropdownLink>
-          </NavDropdownTrigger>
+          <ChatLinks :chats="chats" @on-access-link="closeOnSmallScreen" />
+        </li>
+        <li>
+          <TravelLinks />
         </li>
         <li>
           <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">

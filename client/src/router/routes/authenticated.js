@@ -45,6 +45,16 @@ const authenticatedRoutes = [
     },
     beforeEnter: [authenticated, verified]
   },
+  {
+    path: '/travel/create',
+    name: 'travel-create',
+    component: () => import('@/views/travel/CreateView.vue'),
+    meta: {
+      layout: AuthenticatedLayout,
+      title: 'New Travel'
+    },
+    beforeEnter: [authenticated, verified]
+  },
 ];
 
 export default authenticatedRoutes;

@@ -21,7 +21,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return response([
+                    "message" => "You are already logged in dummy. Refresh your browser."
+                ], 403);
             }
         }
 

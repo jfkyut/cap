@@ -3,8 +3,8 @@ import { ref, computed } from "vue";
 export const useSpeechRecognition = () => {
   
   const recognition = ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) 
-    ? new (window.SpeechRecognition || window.webkitSpeechRecognition)()
-    : false;
+                        ? new (window.SpeechRecognition || window.webkitSpeechRecognition)()
+                        : false;
 
   const isSupported = computed(() => {
     return (!recognition) 

@@ -2,7 +2,7 @@
 
 import ExtraButton from '../buttons/ExtraButton.vue';
 import { useGeneralUtilities } from '@/utilities/general';
-import { useSpeechSynthesis } from '@/utilities/speech';
+import { useSpeechSynthesis } from '@/utilities/speechSynthesis';
 
 defineProps({ message: String })
 

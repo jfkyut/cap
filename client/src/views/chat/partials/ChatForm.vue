@@ -7,7 +7,7 @@ import PresetMessages from './PresetMessages.vue';
 import { useChatService } from '@/services/chatService';
 import { useRoute, useRouter } from 'vue-router';
 import ChatOptions from './ChatOptions.vue';
-import { useSpeechRecognition } from '@/utilities/speech';
+import { useSpeechRecognition } from '@/utilities/speechRecognition';
 
 const emit = defineEmits(['submitted']);
 

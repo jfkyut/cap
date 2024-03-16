@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\TravelItineraryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
@@ -31,4 +32,8 @@ Route::middleware(['auth:sanctum'])
         Route::delete('/chat/{chat}', [ChatController::class, 'destroy']);
 
         Route::post('/message/{chat}', [MessageController::class, 'store']);
+
+        Route::post('/travel', [TravelItineraryController::class, 'store']);
+        Route::put('/travel/{travel}', [TravelItineraryController::class, 'update']);
+        Route::delete('/travel/{travel}', [TravelItineraryController::class, 'destroy']);
     });

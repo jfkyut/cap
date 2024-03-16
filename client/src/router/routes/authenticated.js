@@ -48,7 +48,7 @@ const authenticatedRoutes = [
   {
     path: '/travel/create',
     name: 'travel-create',
-    component: () => import('@/views/travel/CreateView.vue'),
+    component: () => import('@/views/travel/create/CreateView.vue'),
     meta: {
       layout: AuthenticatedLayout,
       title: 'New Travel'

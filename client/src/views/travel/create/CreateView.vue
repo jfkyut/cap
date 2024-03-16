@@ -11,7 +11,7 @@ import DeperatureField from './partials/DepartureField.vue';
 </script>
 
 <template>
-  <div class="rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-4xl mx-auto my-6">
+  <form class="rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-4xl mx-auto my-6">
     <header class="p-4 lg:p-6 border-b dark:border-gray-700">
       <h1 class="dark:text-white font-bold text-xl text-center">Create Travel Itinerary</h1>
     </header>
@@ -33,8 +33,11 @@ import DeperatureField from './partials/DepartureField.vue';
     </div>
 
     <div class="p-4 lg:p-6 flex justify-end">
-      <PrimaryButton type="submit">Generate Travel Itinerary</PrimaryButton>
+      <PrimaryButton type="submit">
+        <span>Generate Travel Itinerary</span>
+        <i class="fa fa-wand-magic-sparkles ml-2"></i>
+      </PrimaryButton>
     </div>
 
-  </div>
+  </form>
 </template>

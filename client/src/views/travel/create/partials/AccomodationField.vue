@@ -50,7 +50,8 @@ const displayAccomodations = computed(() => {
       <DropdownButton 
         v-for="(accommodationType, index) in accomodationTypes" 
         :key="index"
-        @click="addToAccomodations(accommodationType)">
+        @click="addToAccomodations(accommodationType)"
+        :class="form.accommodations.includes(accommodationType) && 'bg-blue-200 dark:bg-blue-800'">
         {{ accommodationType }}
       </DropdownButton>
     </DropdownMenu>

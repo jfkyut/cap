@@ -5,12 +5,12 @@ const { sendApiRequest, getCsrfToken } = useApiUtilities();
 
 export const useTravelService = () => {
 
-  const generateTravelItinerary = (form) => {
+  const generateTravelItineraryRequest = (form) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       return await axios.post('/api/travel', form);
     })
   }
 
-  return { generateTravelItinerary }
+  return { generateTravelItineraryRequest }
 }

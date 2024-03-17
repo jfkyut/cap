@@ -7,11 +7,24 @@ import ActivityField from './partials/ActivityField.vue';
 import IndividualCountField from './partials/IndividualCountField.vue';
 import ArrivalField from './partials/ArrivalField.vue';
 import DeperatureField from './partials/DepartureField.vue';
+import { useTraveFormStore } from '@/stores/travelForm';
+import { useTravelService } from '@/services/travelService';
+import { storeToRefs } from 'pinia';
+
+const { generateTravelItineraryRequest } = useTravelService();
+const { emptyForm } = useTraveFormStore()
+const { form } = storeToRefs(useTraveFormStore());
+
+const generateTravelItinerary = () => {
+  console.log(form.value);
+
+  emptyForm()
+}
 
 </script>
 
 <template>
-  <form class="rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-4xl mx-auto my-6">
+  <form @submit.prevent="generateTravelItinerary" class="rounded-lg dark:bg-gray-800 border dark:border-gray-700 w-full max-w-4xl mx-auto my-6">
     <header class="p-4 lg:p-6 border-b dark:border-gray-700">
       <h1 class="dark:text-white font-bold text-xl text-center">Create Travel Itinerary</h1>
     </header>

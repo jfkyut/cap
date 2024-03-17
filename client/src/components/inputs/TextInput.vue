@@ -19,7 +19,7 @@ defineProps({
     type: Boolean,
     default: false
   },
-  modelValue: String || Number
+  modelValue: ''
 })
 
 const emit = defineEmits(['update:modelValue'])

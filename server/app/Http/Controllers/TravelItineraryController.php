@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TravelItinerary;
 use Illuminate\Http\Request;
+use App\Models\TravelItinerary;
+use App\Http\Requests\Travel\GenerateItineraryRequest;
 
 class TravelItineraryController extends Controller
 {
@@ -18,9 +19,9 @@ class TravelItineraryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GenerateItineraryRequest $request)
     {
-        //
+        return $request->validated();
     }
 
     /**
@@ -29,6 +30,11 @@ class TravelItineraryController extends Controller
     public function show(TravelItinerary $travelItinerary)
     {
         //
+    }
+
+    public function update(Request $request, TravelItinerary $travelItinerary)
+    {
+
     }
 
     /**

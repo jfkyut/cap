@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum'])
         Route::post('/message/{chat}', [MessageController::class, 'store']);
 
         Route::post('/travel', [TravelItineraryController::class, 'store']);
+        Route::get('/travel/{travel}', [TravelItineraryController::class, 'update']);
         Route::put('/travel/{travel}', [TravelItineraryController::class, 'update']);
         Route::delete('/travel/{travel}', [TravelItineraryController::class, 'destroy']);
     });

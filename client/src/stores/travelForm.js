@@ -3,19 +3,24 @@ import { ref } from "vue";
 
 export const useTraveFormStore = defineStore('travel-form', () => {
 
-  const fields = {
+  const form = ref({
     arrival: null,
     departure: null,
     places: [],
     accommodations: [],
     activities: [],
-    individualCount: 1
-  }
-
-  const form = ref(fields)
+    individual_count: 1
+  })
 
   const emptyForm = () => {
-    form.value = fields;
+    form.value = {
+      arrival: null,
+      departure: null,
+      places: [],
+      accommodations: [],
+      activities: [],
+      individual_count: 1
+    };
   }
 
   return {

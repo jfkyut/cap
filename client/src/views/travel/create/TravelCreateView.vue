@@ -15,10 +15,15 @@ const { generateTravelItineraryRequest } = useTravelService();
 const { emptyForm } = useTraveFormStore()
 const { form } = storeToRefs(useTraveFormStore());
 
-const generateTravelItinerary = () => {
-  console.log(form.value);
+const generateTravelItinerary = async () => {
+  const { data } = await generateTravelItineraryRequest(form.value)
 
-  emptyForm()
+  if (data) {
+
+    console.log(data);
+
+    // emptyForm();
+  }
 }
 
 </script>

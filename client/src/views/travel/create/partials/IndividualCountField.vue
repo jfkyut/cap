@@ -14,6 +14,6 @@ const { form } = storeToRefs(useTraveFormStore());
     <TextInput 
       type="number"
       placeholder="Visitor count"
-      v-model="form.individualCount" />
+      v-model="form.individual_count" />
   </div>
 </template>

@@ -9,7 +9,7 @@ export const useTraveFormStore = defineStore('travel-form', () => {
     places: [],
     accommodations: [],
     activities: [],
-    individualCount: null
+    individualCount: 1
   }
 
   const form = ref(fields)

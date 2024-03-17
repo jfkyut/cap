@@ -1,6 +1,10 @@
 <script setup>
 
 import TextInput from '@/components/inputs/TextInput.vue'
+import { useTraveFormStore } from '@/stores/travelForm';
+import { storeToRefs } from 'pinia';
+
+const { form } = storeToRefs(useTraveFormStore());
 
 </script>
 
@@ -9,6 +13,7 @@ import TextInput from '@/components/inputs/TextInput.vue'
     <label for="place">How many of you will visit?</label>
     <TextInput 
       type="number"
-      placeholder="Visitor count" />
+      placeholder="Visitor count"
+      v-model="form.individualCount" />
   </div>
 </template>

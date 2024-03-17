@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useTravelStore = defineStore('travel-form', () => {
+export const useTraveFormStore = defineStore('travel-form', () => {
 
   const fields = {
     arrival: null,
     departure: null,
-    place: null,
-    accommodation: null,
-    activities: null,
+    places: [],
+    accommodations: [],
+    activities: [],
     individualCount: null
   }
 

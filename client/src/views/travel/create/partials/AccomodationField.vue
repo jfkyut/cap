@@ -3,7 +3,11 @@
 import TextInput from '@/components/inputs/TextInput.vue';
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useTraveFormStore } from '@/stores/travelForm';
+import { storeToRefs } from 'pinia';
+
+const { form } = storeToRefs(useTraveFormStore())
 
 const accomodationTypes = [
   'Hotel',
@@ -14,6 +18,18 @@ const accomodationTypes = [
 
 const showAccomodationTypesDropdown = ref(false);
 
+const addToAccomodations = (chosenAccomodation) => {
+  (form.value.accommodations.includes(chosenAccomodation))
+    ? form.value.accommodations = form.value.filter((activity) => activity !== chosenAccomodation)
+    : form.value.accommodations.push(chosenAccomodation)
+}
+
+const displayAccomodations = computed(() => {
+  return form.value.accommodations.map((activity) => {
+    return ` ${activity}`;
+  }).toString()
+})
+
 </script>
 
 <template>
@@ -23,6 +39,7 @@ const showAccomodationTypesDropdown = ref(false);
       @mouseover="showAccomodationTypesDropdown = true"
       @mouseout="showAccomodationTypesDropdown = false"
       placeholder="Accomodation type"
+      v-model="displayAccomodations"
       :read-only="true" />
 
     <DropdownMenu 
@@ -30,7 +47,10 @@ const showAccomodationTypesDropdown = ref(false);
       @mouseout="showAccomodationTypesDropdown = false"
       :show="showAccomodationTypesDropdown"
       position="left-0">
-      <DropdownButton v-for="(accommodationType, index) in accomodationTypes" :key="index">
+      <DropdownButton 
+        v-for="(accommodationType, index) in accomodationTypes" 
+        :key="index"
+        @click="addToAccomodations(accommodationType)">
         {{ accommodationType }}
       </DropdownButton>
     </DropdownMenu>

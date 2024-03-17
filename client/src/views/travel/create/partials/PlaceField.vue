@@ -3,7 +3,11 @@
 import TextInput from '@/components/inputs/TextInput.vue';
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useTraveFormStore } from '@/stores/travelForm';
+import { storeToRefs } from 'pinia';
+
+const { form } = storeToRefs(useTraveFormStore());
 
 const barangays = [
   'Poblacion',
@@ -14,6 +18,18 @@ const barangays = [
 
 const showPlacesDropdown = ref(false);
 
+const addToPlaces = (chosenPlace) => {
+  (form.value.places.includes(chosenPlace))
+    ? form.value.places = form.value.places.filter((place) => place !== chosenPlace)
+    : form.value.places.push(chosenPlace)
+}
+
+const displayPlaces = computed(() => {
+  return form.value.places.map((place) => {
+    return ` ${place}`;
+  }).toString()
+})
+
 </script>
 
 <template>
@@ -23,15 +39,22 @@ const showPlacesDropdown = ref(false);
       @mouseover="showPlacesDropdown = true"
       @mouseout="showPlacesDropdown = false"
       :read-only="true"
-      placeholder="Barangays" />
+      placeholder="Barangays"
+      v-model="displayPlaces" />
 
     <DropdownMenu 
       @mouseover="showPlacesDropdown = true"
       @mouseout="showPlacesDropdown = false"
       :show="showPlacesDropdown"
       position="left-0">
-      <DropdownButton v-for="(barangay, index) in barangays" :key="index">
+      <DropdownButton
+        v-for="(barangay, index) in barangays" 
+        :key="index"
+        @click="addToPlaces(barangay)"
+        :class="form.places.includes(barangay) && 'bg-blue-200 dark:bg-blue-800'">
+
         {{ barangay }}
+
       </DropdownButton>
     </DropdownMenu>
   </div>

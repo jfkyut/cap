@@ -3,7 +3,11 @@
 import TextInput from '@/components/inputs/TextInput.vue';
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useTraveFormStore } from '@/stores/travelForm';
+import { storeToRefs } from 'pinia';
+
+const { form } = storeToRefs(useTraveFormStore());
 
 const activities = [
   'Swimming',
@@ -15,6 +19,18 @@ const activities = [
 
 const showActivitiesDropdown = ref(false);
 
+const addtoActivities = (chosenActivity) => {
+  (form.value.activities.includes(chosenActivity))
+    ? form.value.activities = form.value.filter((activity) => activity !== chosenActivity)
+    : form.value.activities.push(chosenActivity)
+}
+
+const displayActivities = computed(() => {
+  return form.value.activities.map((activity) => {
+    return ` ${activity}`;
+  }).toString()
+})
+
 </script>
 
 <template>
@@ -24,14 +40,19 @@ const showActivitiesDropdown = ref(false);
       @mouseover="showActivitiesDropdown = true"
       @mouseout="showActivitiesDropdown = false"
       placeholder="Activities"
-      :read-only="true" />
+      :read-only="true"
+      v-model="displayActivities" />
 
     <DropdownMenu 
       @mouseover="showActivitiesDropdown = true"
       @mouseout="showActivitiesDropdown = false"
       :show="showActivitiesDropdown"
       position="left-0">
-      <DropdownButton v-for="(activity, index) in activities" :key="index">
+      <DropdownButton 
+        v-for="(activity, index) in activities" 
+        :key="index"
+        @click="addtoActivities(activity)"
+        :class="form.activities.includes(activity) && 'bg-blue-200 dark:bg-blue-800'">
         {{ activity }}
       </DropdownButton>
     </DropdownMenu>

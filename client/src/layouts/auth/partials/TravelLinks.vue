@@ -6,6 +6,8 @@ import { ref, watch } from 'vue';
 
 const isTravelDropdownLinkShow = ref(JSON.parse(sessionStorage.getItem('travel-dropdown')) || false);
 
+const emit = defineEmits(['onAccessLink'])
+
 const toggleChatDropdown = () => {
   (!isTravelDropdownLinkShow.value)
     ? isTravelDropdownLinkShow.value = true
@@ -27,7 +29,7 @@ watch(isTravelDropdownLinkShow, (chatDropdownState) => {
     route-contains="travel">
     <NavDropdownLink 
       to="/travel/create" 
-      @click="closeOnSmallScreen" 
+      @click="emit('onAccessLink')" 
       title="New Chat"
       class="bg-gray-800">
       <div class=" flex items-center justify-between">

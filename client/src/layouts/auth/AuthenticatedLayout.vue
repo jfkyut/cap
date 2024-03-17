@@ -84,7 +84,7 @@ onMounted( async () => {
           <ChatLinks :chats="chats" @on-access-link="closeOnSmallScreen" />
         </li>
         <li>
-          <TravelLinks />
+          <TravelLinks @on-access-link="closeOnSmallScreen" />
         </li>
         <li>
           <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">

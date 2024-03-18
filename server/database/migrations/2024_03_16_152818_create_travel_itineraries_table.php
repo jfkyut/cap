@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('travel_itineraries', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
+            $table->string('title');
             $table->longText('plan');
             $table->foreignUuid('user_id')
                     ->constrained('users')

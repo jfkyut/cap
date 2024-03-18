@@ -10,6 +10,11 @@ class TravelItinerary extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $fillable = [
+        "title",
+        "plan"
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

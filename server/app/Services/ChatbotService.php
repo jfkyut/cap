@@ -7,18 +7,31 @@ use Illuminate\Support\Facades\Storage;
 
 class ChatbotService
 {
-    public function initializeData(array $messages): array
+    public $chatbotInitilaMessage = null;
+    public $travelGeneratorInitialMessage = null;
+
+    public function __construct()
     {
-        $allMessages = [
+        $this->chatbotInitilaMessage = [
             [
                 'role' => 'system',
-                'content' => 'You are ChadGPT, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("format.json"),
+                'content' => 'You are ChadGPT, Virtual Tourist Assistant Chatbot. Reply in a json format, make sure to always include whitespaces (\\n). format: ' . Storage::get("chatbot.json"),
             ]
         ];
 
+        $this->travelGeneratorInitialMessage = [
+            [
+                'role' => 'system',
+                'content' => 'You are Travel Itinerary Generator. Generate a travel itinerary base on the user input. Detail every activity from date of arrival, checkin, dining, checkout, departure and include it in daily activities if necessary. Reply in a json format. format: ' . Storage::get("travel.json"),
+            ]
+        ];
+    }
+
+    public function initializeData(array $messages, array $initialMessage): array
+    {
         return [
             'model' => env('OPENAI_MODEL'),
-            'messages' => array_merge($allMessages, $messages),
+            'messages' => array_merge($initialMessage, $messages),
             "response_format" => [
                 "type" => "json_object"
             ]
@@ -30,7 +43,8 @@ class ChatbotService
         $response = Http::withHeaders([
             "Content-type" => "application/json",
             "Authorization" => "Bearer " . env('OPENAI_KEY'),
-        ])->post(env("OPENAI_ENDPOINT"), $data);
+        ])->timeout(10)
+          ->post(env("OPENAI_ENDPOINT"), $data);
 
         return $response->ok()
             ? json_decode($response->json()['choices'][0]['message']['content'])

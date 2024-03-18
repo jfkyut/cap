@@ -27,7 +27,7 @@ class MessageController extends Controller
             $request->validated('message')
         );
 
-        $data = $this->chatbotService->initializeData($allMessages);
+        $data = $this->chatbotService->initializeData($allMessages, $this->chatbotService->chatbotInitilaMessage);
 
         $response = $this->chatbotService->generateResponse($data);
 

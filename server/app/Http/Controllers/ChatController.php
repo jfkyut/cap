@@ -45,7 +45,7 @@ class ChatController extends Controller
     {
         $newMessage = $this->messageService->initializeFirstMessage($request->validated('message'));
 
-        $data = $this->chatbotService->initializeData($newMessage);
+        $data = $this->chatbotService->initializeData($newMessage, $this->chatbotService->chatbotInitilaMessage);
         
         $response = $this->chatbotService->generateResponse($data);
 

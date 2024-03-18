@@ -43,7 +43,7 @@ class ChatbotService
         $response = Http::withHeaders([
             "Content-type" => "application/json",
             "Authorization" => "Bearer " . env('OPENAI_KEY'),
-        ])->timeout(10)
+        ])->timeout(60)
           ->post(env("OPENAI_ENDPOINT"), $data);
 
         return $response->ok()

@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TravelItineraryService;
 use Illuminate\Http\Request;
 use App\Models\TravelItinerary;
 use App\Services\ChatbotService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\Travel\GenerateItineraryRequest;
 
 class TravelItineraryController extends Controller
 {
     private $chatbotService;
+    private $travelItineraryService;
 
-    public function __construct(ChatbotService $chatbotService)
+    public function __construct(ChatbotService $chatbotService, TravelItineraryService $travelItineraryService)
     {
         $this->chatbotService = $chatbotService;
+        $this->travelItineraryService = $travelItineraryService;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return response($this->travelItineraryService->getTravelItineraries());
     }
 
     /**
@@ -30,29 +32,17 @@ class TravelItineraryController extends Controller
      */
     public function store(GenerateItineraryRequest $request)
     {
-        $places = implode(", ", $request->validated("places"));
-
-        $activities = implode(", ", $request->validated("activities"));
-
-        $accommodations = implode(", ", $request->validated("accommodations"));
-
-        $message = [
-            [
-                'role' => 'user',
-                'content' => 'Arrival date: ' . $request->validated('arrival') .  '. Departure date: ' . $request->validated('departure') . '. Barangays to visit: ' . $places . '. Activities to do: ' . $activities . '. Preferred accommodation type: ' . $accommodations
-            ]
-        ];
+        $message = $this->travelItineraryService->initializeMessage($request->validated());
 
         $data = $this->chatbotService->initializeData($message, $this->chatbotService->travelGeneratorInitialMessage);
 
         $response = $this->chatbotService->generateResponse($data);
 
-        $travelItinerary = Auth::user()->travelItineraries()->create([
-            "title" => $response->title,
-            "plan" => Crypt::encrypt($response->plan),
-        ]);
+        $travelItinerary = $this->travelItineraryService->createTravelItinerary($response);
 
-        return response($travelItinerary);
+        $travelItinerary['plan'] = Crypt::decrypt($travelItinerary['plan']);
+
+        return response($travelItinerary, 201);
     }
 
     /**

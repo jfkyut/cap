@@ -23,8 +23,11 @@ export const useTravelStore = defineStore('travel-form', () => {
     };
   }
 
+  const travels = ref(null);
+
   return {
     form,
+    travels,
     emptyForm
   }
 })

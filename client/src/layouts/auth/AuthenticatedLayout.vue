@@ -8,15 +8,20 @@ import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
 import TravelLinks from './partials/TravelLinks.vue';
 import ToggleInput from '@/components/inputs/ToggleInput.vue';
-import { onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useChatService } from '@/services/chatService';
 import { useChatStore } from '@/stores/chat';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 import ChatLinks from './partials/ChatLinks.vue';
+import { useTravelService } from '@/services/travelService';
+import { useTravelStore } from '@/stores/travel';
 
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
+
+const { getTravelItinerariesRequest } = useTravelService();
+const { travels } = storeToRefs(useTravelStore());
+
 const profileStore = useProfileStore();
 const themeStore = useThemeStore();
 const sidebarStore = useSidebarStore();
@@ -35,10 +40,21 @@ const toggleSidebar = () => {
 
 const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
 
-onMounted( async () => {
+const getAllChats = async () => {
   const { data } = await getChatsRequest();
 
   chats.value = data;
+}
+
+const getAllTravels = async () => {
+  const { data } = await getTravelItinerariesRequest();
+
+  travels.value = data;
+}
+
+onMounted(() => {
+  getAllChats();
+  getAllTravels()
 })
 
 </script>

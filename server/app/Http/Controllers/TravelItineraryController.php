@@ -45,14 +45,6 @@ class TravelItineraryController extends Controller
         return response($travelItinerary, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TravelItinerary $travelItinerary)
-    {
-        //
-    }
-
     public function update(Request $request, TravelItinerary $travelItinerary)
     {
 

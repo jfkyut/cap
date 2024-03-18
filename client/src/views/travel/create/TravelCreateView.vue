@@ -10,19 +10,26 @@ import DeperatureField from './partials/DepartureField.vue';
 import { useTravelStore } from '@/stores/travel';
 import { useTravelService } from '@/services/travelService';
 import { storeToRefs } from 'pinia';
+import LoadingButton from '@/components/buttons/LoadingButton.vue';
+import { ref } from 'vue';
 
 const { generateTravelItineraryRequest } = useTravelService();
-const { emptyForm } = useTravelStore()
+const { emptyForm, addTravel } = useTravelStore()
 const { form } = storeToRefs(useTravelStore());
 
+const isLoading = ref(false);
+
 const generateTravelItinerary = async () => {
+  isLoading.value = true;
+
   const { data } = await generateTravelItineraryRequest(form.value)
+
+  isLoading.value = false;
 
   if (data) {
 
-    console.log(data);
-
-    // emptyForm();
+    addTravel(data);
+    emptyForm();
   }
 }
 
@@ -51,10 +58,11 @@ const generateTravelItinerary = async () => {
     </div>
 
     <div class="p-4 lg:p-6 flex justify-end">
-      <PrimaryButton type="submit">
+      <PrimaryButton type="submit" v-if="!isLoading">
         <span>Generate Travel Itinerary</span>
         <i class="fa fa-wand-magic-sparkles ml-2"></i>
       </PrimaryButton>
+      <LoadingButton v-else />
     </div>
 
   </form>

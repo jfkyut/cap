@@ -6,6 +6,8 @@ import { ref, watch } from 'vue';
 
 const isTravelDropdownLinkShow = ref(JSON.parse(sessionStorage.getItem('travel-dropdown')) || false);
 
+defineProps({ travels: Object })
+
 const emit = defineEmits(['onAccessLink'])
 
 const toggleChatDropdown = () => {
@@ -35,6 +37,15 @@ watch(isTravelDropdownLinkShow, (chatDropdownState) => {
       <div class=" flex items-center justify-between">
         <span>New travel</span>
         <i class="fa fa-plus"></i>
+      </div>
+    </NavDropdownLink>
+    <NavDropdownLink 
+      v-for="(travel, index) in travels" 
+      :key="index"
+      :to="`/travel/${travel.id}`" 
+      :title="travel.title">
+      <div class="truncate">
+        {{ travel.title }}
       </div>
     </NavDropdownLink>
   </NavDropdownTrigger>

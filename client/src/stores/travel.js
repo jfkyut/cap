@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useTravelStore = defineStore('travel-form', () => {
+export const useTravelStore = defineStore('travel', () => {
 
   const form = ref({
     arrival: null,
@@ -25,9 +25,14 @@ export const useTravelStore = defineStore('travel-form', () => {
 
   const travels = ref(null);
 
+  const addTravel = (newTravel) => {
+    travels.value.unshift(newTravel);
+  }
+
   return {
     form,
     travels,
+    addTravel,
     emptyForm
   }
 })

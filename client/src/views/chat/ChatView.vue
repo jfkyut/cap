@@ -18,7 +18,7 @@ const chatId = computed(() => route.params.id);
 const chatContainerRef = ref(null);
 
 const setChatViewHeight = async () => {
-  if (chatContainerRef.value !== null) {
+  if (chatContainerRef.value !== null || chatContainerRef.value !== undefined) {
     setTimeout(() => {
       chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
     }, 100)

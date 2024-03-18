@@ -55,6 +55,16 @@ const authenticatedRoutes = [
     },
     beforeEnter: [authenticated, verified]
   },
+  {
+    path: '/travel/:id',
+    name: 'travel',
+    component: () => import('@/views/travel/travel/TravelView.vue'),
+    meta: {
+      layout: AuthenticatedLayout,
+      title: 'New Travel'
+    },
+    beforeEnter: [authenticated, verified]
+  },
 ];
 
 export default authenticatedRoutes;

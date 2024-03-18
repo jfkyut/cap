@@ -4,10 +4,10 @@ import TextInput from '@/components/inputs/TextInput.vue';
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
 import { computed, ref } from 'vue';
-import { useTraveFormStore } from '@/stores/travelForm';
 import { storeToRefs } from 'pinia';
+import { useTravelStore } from '@/stores/travel';
 
-const { form } = storeToRefs(useTraveFormStore());
+const { form } = storeToRefs(useTravelStore());
 
 const barangays = [
   'Poblacion',

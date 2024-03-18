@@ -4,10 +4,10 @@ import TextInput from '@/components/inputs/TextInput.vue';
 import DropdownMenu from '@/components/dropdowns/dropdown/DropdownMenu.vue';
 import DropdownButton from '@/components/dropdowns/dropdown/DropdownButton.vue';
 import { ref, computed } from 'vue';
-import { useTraveFormStore } from '@/stores/travelForm';
+import { useTravelStore } from '@/stores/travel';
 import { storeToRefs } from 'pinia';
 
-const { form } = storeToRefs(useTraveFormStore());
+const { form } = storeToRefs(useTravelStore());
 
 const activities = [
   'Swimming',

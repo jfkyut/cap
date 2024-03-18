@@ -7,13 +7,13 @@ import ActivityField from './partials/ActivityField.vue';
 import IndividualCountField from './partials/IndividualCountField.vue';
 import ArrivalField from './partials/ArrivalField.vue';
 import DeperatureField from './partials/DepartureField.vue';
-import { useTraveFormStore } from '@/stores/travelForm';
+import { useTravelStore } from '@/stores/travel';
 import { useTravelService } from '@/services/travelService';
 import { storeToRefs } from 'pinia';
 
 const { generateTravelItineraryRequest } = useTravelService();
-const { emptyForm } = useTraveFormStore()
-const { form } = storeToRefs(useTraveFormStore());
+const { emptyForm } = useTravelStore()
+const { form } = storeToRefs(useTravelStore());
 
 const generateTravelItinerary = async () => {
   const { data } = await generateTravelItineraryRequest(form.value)

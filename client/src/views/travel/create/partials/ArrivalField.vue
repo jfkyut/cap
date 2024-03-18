@@ -1,10 +1,10 @@
 <script setup>
 
 import TextInput from '@/components/inputs/TextInput.vue';
-import { useTraveFormStore } from '@/stores/travelForm';
+import { useTravelStore } from '@/stores/travel';
 import { storeToRefs } from 'pinia';
 
-const { form } = storeToRefs(useTraveFormStore());
+const { form } = storeToRefs(useTravelStore());
 
 </script>
 

@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
+import { useTravelService } from "@/services/travelService";
+
+const { getTravelRequest } = useTravelService();
 
 export const useTravelStore = defineStore('travel', () => {
 
@@ -23,13 +26,13 @@ export const useTravelStore = defineStore('travel', () => {
     };
   }
 
+  const activeTravelId = ref(null);
+
+  const travel = computed(() => {
+    return travels.value?.find((trav) => trav.id === activeTravelId.value)
+  })
+
   const travels = ref(null);
-
-  const travel = ref(null);
-
-  const getTravel = () => {
-    
-  }
 
   const addTravel = (newTravel) => {
     travels.value.unshift(newTravel);
@@ -37,8 +40,10 @@ export const useTravelStore = defineStore('travel', () => {
 
   return {
     form,
+    travel,
     travels,
+    activeTravelId,
     addTravel,
-    emptyForm
+    emptyForm,
   }
 })

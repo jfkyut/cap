@@ -13,7 +13,7 @@ import { storeToRefs } from 'pinia';
 import LoadingButton from '@/components/buttons/LoadingButton.vue';
 import { ref } from 'vue';
 
-const { generateTravelItineraryRequest } = useTravelService();
+const { generateTravelRequest } = useTravelService();
 const { emptyForm, addTravel } = useTravelStore()
 const { form } = storeToRefs(useTravelStore());
 
@@ -22,7 +22,7 @@ const isLoading = ref(false);
 const generateTravelItinerary = async () => {
   isLoading.value = true;
 
-  const { data } = await generateTravelItineraryRequest(form.value)
+  const { data } = await generateTravelRequest(form.value)
 
   isLoading.value = false;
 

@@ -19,7 +19,7 @@ import { useTravelStore } from '@/stores/travel';
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
 
-const { getTravelItinerariesRequest } = useTravelService();
+const { getAllTravelRequest } = useTravelService();
 const { travels } = storeToRefs(useTravelStore());
 
 const profileStore = useProfileStore();
@@ -47,7 +47,7 @@ const getAllChats = async () => {
 }
 
 const getAllTravels = async () => {
-  const { data } = await getTravelItinerariesRequest();
+  const { data } = await getAllTravelRequest();
 
   travels.value = data;
 }

@@ -25,6 +25,12 @@ export const useTravelStore = defineStore('travel', () => {
 
   const travels = ref(null);
 
+  const travel = ref(null);
+
+  const getTravel = () => {
+    
+  }
+
   const addTravel = (newTravel) => {
     travels.value.unshift(newTravel);
   }

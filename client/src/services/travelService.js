@@ -5,14 +5,21 @@ const { sendApiRequest, getCsrfToken } = useApiUtilities();
 
 export const useTravelService = () => {
 
-  const getTravelItinerariesRequest = () => {
+  const getAllTravelRequest = () => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       return await axios.get('/api/travel');
     })
   }
 
-  const generateTravelItineraryRequest = (form) => {
+  const getTravelRequest = (id) => {
+    return sendApiRequest( async () => {
+      await getCsrfToken();
+      return await axios.get(`/api/travel/${id}`);
+    })
+  }
+
+  const generateTravelRequest = (form) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       return await axios.post('/api/travel', form);
@@ -20,7 +27,8 @@ export const useTravelService = () => {
   }
 
   return { 
-    getTravelItinerariesRequest,
-    generateTravelItineraryRequest 
+    getAllTravelRequest,
+    getTravelRequest,
+    generateTravelRequest 
   }
 }

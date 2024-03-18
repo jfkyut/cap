@@ -21,7 +21,7 @@ const showActivitiesDropdown = ref(false);
 
 const addtoActivities = (chosenActivity) => {
   (form.value.activities.includes(chosenActivity))
-    ? form.value.activities = form.value.filter((activity) => activity !== chosenActivity)
+    ? form.value.activities = form.value.activities.filter((activity) => activity !== chosenActivity)
     : form.value.activities.push(chosenActivity)
 }
 

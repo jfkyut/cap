@@ -20,7 +20,7 @@ const showAccomodationTypesDropdown = ref(false);
 
 const addToAccomodations = (chosenAccomodation) => {
   (form.value.accommodations.includes(chosenAccomodation))
-    ? form.value.accommodations = form.value.filter((activity) => activity !== chosenAccomodation)
+    ? form.value.accommodations = form.value.accommodations.filter((activity) => activity !== chosenAccomodation)
     : form.value.accommodations.push(chosenAccomodation)
 }
 

@@ -12,10 +12,12 @@ import { useTravelService } from '@/services/travelService';
 import { storeToRefs } from 'pinia';
 import LoadingButton from '@/components/buttons/LoadingButton.vue';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const { generateTravelRequest } = useTravelService();
 const { emptyForm, addTravel } = useTravelStore()
 const { form } = storeToRefs(useTravelStore());
+const router = useRouter();
 
 const isLoading = ref(false);
 
@@ -27,7 +29,7 @@ const generateTravelItinerary = async () => {
   isLoading.value = false;
 
   if (data) {
-
+    router.push(`/travel/${data.id}`)
     addTravel(data);
     emptyForm();
   }

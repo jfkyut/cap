@@ -5,7 +5,7 @@ const { getCsrfToken, sendApiRequest } = useApiUtilities();
 
 export const useAuthService = () => {
 
-  const login = (credentials) => {
+  const loginRequest = (credentials) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       await axios.post('/login', credentials);
@@ -14,7 +14,7 @@ export const useAuthService = () => {
     })
   }
 
-  const createAccount = (credentials) => {
+  const registerRequest = (credentials) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       await axios.post('/register', credentials);
@@ -23,7 +23,7 @@ export const useAuthService = () => {
     })
   }
 
-  const logout = () => {
+  const logoutRequest = () => {
     return sendApiRequest(async () => {
       await axios.post('/logout');
 
@@ -31,7 +31,7 @@ export const useAuthService = () => {
     })
   }
 
-  const requestPasswordReset = (credentials) => {
+  const newPasswordRequest = (credentials) => {
     return sendApiRequest(async () => {
       await getCsrfToken()
       const { data } = await axios.post('/forgot-password', credentials);
@@ -40,7 +40,7 @@ export const useAuthService = () => {
     });
   }
 
-  const resetPassword = (credentials) => {
+  const resetPasswordRequest = (credentials) => {
     return sendApiRequest( async () => {
       await getCsrfToken();
       const { data } = await axios.post('/reset-password', credentials)
@@ -49,7 +49,7 @@ export const useAuthService = () => {
     })
   }
 
-  const requestEmailVerificationLink = () => {
+  const emailVerificationLinkRequest = () => {
     return sendApiRequest(async () => {
       const { data } = await axios.post('/email/verification-notification');
 
@@ -58,11 +58,11 @@ export const useAuthService = () => {
   }
 
   return {
-    login,
-    createAccount,
-    logout,
-    requestPasswordReset,
-    resetPassword,
-    requestEmailVerificationLink
+    loginRequest,
+    registerRequest,
+    logoutRequest,
+    newPasswordRequest,
+    resetPasswordRequest,
+    emailVerificationLinkRequest
   }
 }

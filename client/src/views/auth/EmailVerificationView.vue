@@ -10,7 +10,7 @@ import { ref } from 'vue';
 import { useAuthService } from '@/services/authService';
 import { useRouter } from 'vue-router';
 
-const { logout, requestEmailVerificationLink } = useAuthService();
+const { logoutRequest, emailVerificationLinkRequest } = useAuthService();
 
 const toast = useToast();
 const router = useRouter();
@@ -22,7 +22,7 @@ const isLoading = ref(false);
 const sendEmailVerificationLink = async () => {
   isLoading.value = true;
   
-  const { status } = await requestEmailVerificationLink();
+  const { status } = await emailVerificationLinkRequest();
 
   (status) && toast.success(status)
 
@@ -30,7 +30,7 @@ const sendEmailVerificationLink = async () => {
 }
 
 const logoutUser = async () => {
-  if (await logout()) {
+  if (await logoutRequest()) {
     user.value = null;
     router.push('/login');
   }

@@ -20,8 +20,6 @@ watch(travelId, (travelId) => {
 
 <template>
   <div>
-    this is the travel view
-
     {{ travel }}
   </div>
 </template>

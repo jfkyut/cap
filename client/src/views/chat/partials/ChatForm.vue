@@ -122,7 +122,7 @@ watch(transcript, (transcript) => {
         @click="listen" 
         type="button" 
         :class="[isListening ? 'text-red-600 dark:textred-500' : 'text-blue-600 dark:text-blue-500']"
-        class="inline-flex justify-center p-2 rounded-full cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600">
+        class="inline-flex mb-1 justify-center p-2 rounded-full cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600">
         <i class="fa fa-microphone w-5 h-5"></i>
         <span class="sr-only">Microphone</span>
       </button>

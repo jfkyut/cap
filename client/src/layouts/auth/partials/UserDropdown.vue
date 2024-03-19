@@ -11,12 +11,12 @@ import { useProfileStore } from '@/stores/profile';
 import { storeToRefs } from 'pinia';
 
 const { user } = storeToRefs(useProfileStore());
-const { logout } = useAuthService();
+const { logoutRequest } = useAuthService();
 
 const router = useRouter();
 
-const logoutUser = async () => {
-  if (await logout()) {
+const logout = async () => {
+  if (await logoutRequest()) {
     user.value = null;
     router.push('/login');
   }
@@ -46,7 +46,7 @@ const isDropdownShow = ref(false);
         <i class="fa fa-user mr-2"></i>
         <span>Account</span>
       </DropdownLink>
-      <DropdownButton @click="logoutUser">
+      <DropdownButton @click="logout">
         <i class="fa fa-sign-out mr-2"></i>
         <span>Sign out</span>
       </DropdownButton>

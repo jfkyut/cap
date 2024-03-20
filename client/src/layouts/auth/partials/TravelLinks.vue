@@ -43,6 +43,7 @@ watch(isTravelDropdownLinkShow, (chatDropdownState) => {
       v-for="(travel, index) in travels" 
       :key="index"
       :to="`/travel/${travel.id}`" 
+      @click="emit('onAccessLink')"
       :title="travel.title">
       <div class="truncate">
         {{ travel.title }}

@@ -6,12 +6,13 @@
         "destination": ["chosen places"],
         "duration": "number of days",
         "individual_count": "number of people",
-        "accomodation_prefer_types": [
-            "Hotel",
-            "accom type 2",
-            "accom type 3"
+        "inclusion": ["inclusion 1", "inclusion 2"],
+        "exclusion": ["exclusion 1", "exclusion 2"],
+        "accommodation_suggestion": [
+            "name of accommodation base on preference",
+            "name of accommodation base on preference"
         ],
-        "acitivities": [
+        "activities": [
             "acitivty 1",
             "activity 2",
             "activity 3"
@@ -23,12 +24,14 @@
                 "activities": [
                     {
                         "name": "activity 1",
+                        "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     },
                     {
                         "name": "activity 1",
+                        "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
@@ -41,12 +44,14 @@
                 "activities": [
                     {
                         "name": "activity 1",
+                        "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     },
                     {
                         "name": "activity 1",
+                        "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"

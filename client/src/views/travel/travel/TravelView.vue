@@ -3,7 +3,7 @@ import { useTravelStore } from '@/stores/travel';
 import { storeToRefs } from 'pinia';
 import { computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import PrimaryButton from '@/components/buttons/PrimaryButton.vue';
+import TravelControl from './partials/TravelControls.vue';
 
 const { travel, activeTravelId } = storeToRefs(useTravelStore());
 const route = useRoute();
@@ -21,13 +21,9 @@ watch(travelId, (travelId) => {
 
 <template>
 
-  <div class="fixed z-10 bottom-0">
-    <PrimaryButton>
-      <i class="fa fa-edit"></i>
-    </PrimaryButton>
-  </div>
+  <TravelControl />
 
-  <div class="space-y-6 max-w-4xl mx-auto my-6">
+  <div class="space-y-6 max-w-4xl mx-auto my-8 lg:my-6">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">

@@ -62,7 +62,7 @@ onMounted(() => {
 <template>
 <div class="relative">
   <div
-    :class="sidebarStore.isShow ? 'md:ml-64' : 'md:ml-0'"
+    :class="sidebarStore.isShow ? 'lg:ml-64' : 'lg:ml-0'"
     class="bg-white dark:bg-gray-800 pt-4 p-2 fixed top-0 right-0 left-0 flex justify-between border-b dark:border-gray-700 shadow transition-transform z-10">
     <ExtraButton @click="toggleSidebar">
       <span class="sr-only">Open sidebar</span>
@@ -79,7 +79,7 @@ onMounted(() => {
     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-gray-800 border-r border-gray-700" aria-label="Sidebar">
     <div class="px-3 py-4 pt-5">
       <h2 class="text-white font-black uppercase md:text-center">Vue Starter</h2>
-      <button @click="sidebarStore.setHide()" type="button" class="md:hidden text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+      <button @click="sidebarStore.setHide()" type="button" class="lg:hidden text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
         </svg>
@@ -121,7 +121,7 @@ onMounted(() => {
   </aside>
   
   <div
-    :class="sidebarStore.isShow ? 'md:ml-64' : 'md:ml-0'"
+    :class="sidebarStore.isShow ? 'lg:ml-64' : 'lg:ml-0'"
     class="p-4 bg-gray-50 dark:bg-gray-900 min-h-screen dark:text-gray-400 transition-transform pt-20">
     <div
       :class="sidebarStore.isShow ? 'opacity-100' : 'opacity-0 invisible'" 

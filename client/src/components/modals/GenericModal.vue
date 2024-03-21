@@ -35,11 +35,10 @@ const emit = defineEmits(['onConfirm', 'onCancel']);
 
 <template>
   <div 
-    tabindex="-1" 
     aria-hidden="true" 
     @click.self="emit('onCancel')"
     :class="show ? 'opacity-100' : 'opacity-0 invisible'"
-    class="backdrop-sepia-0 bg-gray-400/70 duration-200 dark:bg-gray-950/70 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] min-h-screen">
+    class="backdrop-sepia-0 bg-gray-400/70 duration-200 dark:bg-gray-950/70 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[10000] flex justify-center items-center md:inset-0 h-[calc(100%-1rem)] min-h-screen">
     <form @submit.prevent="emit('onConfirm')" class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
       <div class="bg-white rounded-lg shadow dark:bg-gray-700">

@@ -45,7 +45,7 @@ watch(travelId, (travelId) => {
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Destination
             </th>
             <td class="px-6 py-4">
@@ -53,62 +53,62 @@ watch(travelId, (travelId) => {
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Arrival Date
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.arrival }}
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Departure Date
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.departure }}
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Duration
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.duration }}
             </td>
           </tr>
           
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Activities
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.activities?.length > 0 && travel.plan.activities.join(', ') }}
             </td>
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Accomodation type preference
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.accommodation_suggestion?.length > 0 && travel.plan.accommodation_suggestion.join(', ') }}
             </td>
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Inclusion
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.inclusion?.length > 0 && travel.plan.inclusion.join(', ') }}
             </td>
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Exclusion
             </th>
-            <td class="px-6 py-4 w-[50%] truncate">
+            <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.exclusion?.length > 0 && travel.plan.exclusion.join(', ') }}
             </td>
           </tr>

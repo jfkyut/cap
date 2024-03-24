@@ -35,6 +35,6 @@ Route::middleware(['auth:sanctum'])
 
         Route::get('/travel', [TravelItineraryController::class, 'index']);
         Route::post('/travel', [TravelItineraryController::class, 'store']);
-        Route::put('/travel/{travel}', [TravelItineraryController::class, 'update']);
-        Route::delete('/travel/{travel}', [TravelItineraryController::class, 'destroy']);
+        Route::put('/travel/{travelItinerary}', [TravelItineraryController::class, 'update']);
+        Route::delete('/travel/{travelItinerary}', [TravelItineraryController::class, 'destroy']);
     });

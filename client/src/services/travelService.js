@@ -26,9 +26,25 @@ export const useTravelService = () => {
     })
   }
 
+  const updateTravelRequest = (id, form) => {
+    return sendApiRequest( async () => {
+      return axios.put(`/api/travel/${id}`, form);
+    })
+  }
+
+  const deleteTravelRequest = (id) => {
+    return sendApiRequest( async () => {
+      await axios.delete(`/api/travel/${id}`);
+
+      return true;
+    })
+  }
+
   return { 
     getAllTravelRequest,
     getTravelRequest,
-    generateTravelRequest 
+    generateTravelRequest,
+    updateTravelRequest,
+    deleteTravelRequest 
   }
 }

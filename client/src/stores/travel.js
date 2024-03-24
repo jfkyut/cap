@@ -38,6 +38,18 @@ export const useTravelStore = defineStore('travel', () => {
     travels.value.unshift(newTravel);
   }
 
+  const updateCurrentTravel = (id, updatedTravel) => {
+    travels.value.find((travel) => {
+      if (travel.id === id) {
+        travel.title = updatedTravel.title
+      }
+    })
+  }
+
+  const deleteCurrentTravel = (id) => {
+    travels.value.filter((travel) => travel.id !== id)
+  } 
+
   return {
     form,
     travel,
@@ -45,5 +57,7 @@ export const useTravelStore = defineStore('travel', () => {
     activeTravelId,
     addTravel,
     emptyForm,
+    updateCurrentTravel,
+    deleteCurrentTravel
   }
 })

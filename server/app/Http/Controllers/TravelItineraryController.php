@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\TravelItineraryService;
-use Illuminate\Http\Request;
 use App\Models\TravelItinerary;
 use App\Services\ChatbotService;
 use Illuminate\Support\Facades\Crypt;
+use App\Services\TravelItineraryService;
+use App\Http\Requests\Travel\TravelUpdateRequest;
 use App\Http\Requests\Travel\GenerateItineraryRequest;
 
 class TravelItineraryController extends Controller
@@ -45,9 +45,14 @@ class TravelItineraryController extends Controller
         return response($travelItinerary, 201);
     }
 
-    public function update(Request $request, TravelItinerary $travelItinerary)
+    public function update(TravelUpdateRequest $request, TravelItinerary $travelItinerary)
     {
+        $travelItinerary->update($request->validated());
+        $travelItinerary->save();
 
+        $travelItinerary['plan'] = Crypt::decrypt($travelItinerary['plan']);
+
+        return response($travelItinerary);
     }
 
     /**
@@ -55,6 +60,8 @@ class TravelItineraryController extends Controller
      */
     public function destroy(TravelItinerary $travelItinerary)
     {
-        //
+        $travelItinerary->delete();
+
+        return response()->noContent();
     }
 }

@@ -13,7 +13,7 @@ const download = () => {
   html2pdf(travelHtml, {
     margin: 10,
     filename: `${travel.value.title}.pdf`,
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+    jsPDF: { unit: 'mm', format: [320, 400], orientation: 'portrait' },
     html2canvas: { scale: 2 },
   }).save();
 }

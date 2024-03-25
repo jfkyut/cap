@@ -82,6 +82,15 @@ watch(travelId, (travelId) => {
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+              Individual count
+            </th>
+            <td class="px-6 py-4 w-[50%]">
+              {{ travel?.plan.individual_count }}
+            </td>
+          </tr>
+
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
               Inclusion
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -174,9 +183,9 @@ watch(travelId, (travelId) => {
             <th scope="col" class="px-6 py-3 truncate">
               Start time
             </th>
-            <!-- <th scope="col" class="px-6 py-3 truncate">
+            <th scope="col" class="px-6 py-3 truncate">
               End time
-            </th> -->
+            </th>
             <th scope="col" class="px-6 py-3 truncate">
               Duration
             </th>
@@ -199,9 +208,9 @@ watch(travelId, (travelId) => {
             <td scope="row" class="px-6 py-4 w-[15%] truncate">
               {{ activity.start_time }}
             </td>
-            <!-- <td scope="row" class="px-6 py-4 w-[15%] truncate">
+            <td scope="row" class="px-6 py-4 w-[15%] truncate">
               {{ activity.end_time }}
-            </td> -->
+            </td>
             <td scope="row" class="px-6 py-4 w-[15%] truncate">
               {{ activity.duration }}
             </td>

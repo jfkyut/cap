@@ -9,8 +9,20 @@
         "inclusion": ["inclusion 1", "inclusion 2"],
         "exclusion": ["exclusion 1", "exclusion 2"],
         "accommodation_suggestion": [
-            "name of accommodation base on preference",
-            "name of accommodation base on preference"
+            {
+                "name": "Name of accommodation",
+                "location": "location",
+                "type": "type (eg. hotel,)",
+                "estimated_cost": "₱ <amount>",
+                "contact": "<contact> if available"
+            },
+            {
+                "name": "Name of accommodation",
+                "location": "location",
+                "type": "type (eg. hotel,)",
+                "estimated_cost": "₱ <amount>",
+                "contact": "<contact> (N/A) <- if not available"
+            }
         ],
         "activities": [
             "acitivty 1",

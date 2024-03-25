@@ -32,7 +32,7 @@ class TravelItineraryService
         return [
             [
                 'role' => 'user',
-                'content' => 'Arrival date: ' . $userChoices['arrival'] .  '. Departure date: ' . $userChoices['departure'] . '. Barangays to visit: ' . $places . '. Activities to do: ' . $activities . '. Preferred accommodation type: ' . $accommodations
+                'content' => 'Arrival date: ' . $userChoices['arrival'] .  '. Departure date: ' . $userChoices['departure'] . '. Barangays to visit: ' . $places . '. Activities to do: ' . $activities . '. Preferred accommodation type: ' . $accommodations . '. Individual count: ' . $userChoices['individual_count']
             ]
         ];
     }

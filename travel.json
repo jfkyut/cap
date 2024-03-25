@@ -4,7 +4,7 @@
         "arrival": "date of arrival",
         "departure": "date of departure",
         "destination": ["chosen places"],
-        "duration": "number of days",
+        "duration": "number of days (eg. day 1, 1 week, 1 month)",
         "individual_count": "number of people",
         "inclusion": ["inclusion 1", "inclusion 2"],
         "exclusion": ["exclusion 1", "exclusion 2"],
@@ -26,6 +26,8 @@
                         "name": "activity 1",
                         "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
+                        "location": "location",
+                        "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     },
@@ -33,6 +35,8 @@
                         "name": "activity 1",
                         "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
+                        "location": "location",
+                        "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     }
@@ -46,6 +50,8 @@
                         "name": "activity 1",
                         "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
+                        "location": "location",
+                        "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     },
@@ -53,6 +59,8 @@
                         "name": "activity 1",
                         "estimated_budget": "₱ <amount>",
                         "duration": "2 (hour/s || day/s)",
+                        "location": "location",
+                        "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     }

@@ -47,7 +47,7 @@ export const useTravelStore = defineStore('travel', () => {
   }
 
   const deleteCurrentTravel = (id) => {
-    travels.value.filter((travel) => travel.id !== id)
+    travels.value = travels.value.filter((travel) => travel.id !== id)
   } 
 
   return {

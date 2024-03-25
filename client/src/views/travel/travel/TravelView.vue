@@ -23,7 +23,7 @@ watch(travelId, (travelId) => {
 
   <TravelControl />
 
-  <div class="space-y-6 max-w-4xl mx-auto my-8 lg:my-6">
+  <div class="space-y-6 max-w-6xl mx-auto my-8 lg:my-6">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
@@ -120,7 +120,7 @@ watch(travelId, (travelId) => {
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
           <tr class="border-b dark:border-gray-600">
-            <th scope="col" colspan="5" class="px-6 py-3 truncate lg:text-center">
+            <th scope="col" colspan="7" class="px-6 py-3 truncate lg:text-center">
               <span class="text-lg dark:text-gray-300">
                 Day {{ day.day }}: {{ day.date }}
               </span>
@@ -140,6 +140,12 @@ watch(travelId, (travelId) => {
               Duration
             </th>
             <th scope="col" class="px-6 py-3 truncate">
+              Location
+            </th>
+            <th scope="col" class="px-6 py-3 truncate">
+              Transportation
+            </th>
+            <th scope="col" class="px-6 py-3 truncate">
               Estimated budget
             </th>
           </tr>
@@ -157,6 +163,12 @@ watch(travelId, (travelId) => {
             </th>
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
               {{ activity.duration }}
+            </th>
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
+              {{ activity.location }}
+            </th>
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
+              {{ activity.transportation }}
             </th>
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
               {{ activity.estimated_budget }}

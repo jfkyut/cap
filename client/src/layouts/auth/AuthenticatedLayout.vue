@@ -38,7 +38,7 @@ const toggleSidebar = () => {
     : sidebarStore.setShow()
 }
 
-const closeOnSmallScreen = () => (window.innerWidth <= 768) && sidebarStore.setHide()
+const closeOnSmallScreen = () => (window.innerWidth < 1024) && sidebarStore.setHide()
 
 const getAllChats = async () => {
   const { data } = await getChatsRequest();

@@ -23,7 +23,7 @@ watch(travelId, (travelId) => {
 
   <TravelControl />
 
-  <div class="space-y-6 max-w-6xl mx-auto my-8 lg:my-6">
+  <div class="space-y-6 max-w-6xl mx-auto my-8 lg:my-6" id="pdf-this">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">

@@ -1,8 +1,5 @@
 import { defineStore } from "pinia";
-import { computed, ref, watch } from "vue";
-import { useTravelService } from "@/services/travelService";
-
-const { getTravelRequest } = useTravelService();
+import { computed, ref } from "vue";
 
 export const useTravelStore = defineStore('travel', () => {
 

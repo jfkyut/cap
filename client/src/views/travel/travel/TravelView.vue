@@ -34,14 +34,6 @@ watch(travelId, (travelId) => {
               </span>
             </th>
           </tr>
-          <tr>
-            <th scope="col" class="px-6 py-3 truncate">
-                Type
-            </th>
-            <th scope="col" class="px-6 py-3 truncate">
-                Details
-            </th>
-          </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -88,7 +80,7 @@ watch(travelId, (travelId) => {
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
-              Accomodation type preference
+              Accomodation Suggestion
             </th>
             <td class="px-6 py-4 w-[50%]">
               {{ travel?.plan.accommodation_suggestion?.length > 0 && travel.plan.accommodation_suggestion.join(', ') }}
@@ -133,9 +125,9 @@ watch(travelId, (travelId) => {
             <th scope="col" class="px-6 py-3 truncate">
               Start time
             </th>
-            <th scope="col" class="px-6 py-3 truncate">
+            <!-- <th scope="col" class="px-6 py-3 truncate">
               End time
-            </th>
+            </th> -->
             <th scope="col" class="px-6 py-3 truncate">
               Duration
             </th>
@@ -158,9 +150,9 @@ watch(travelId, (travelId) => {
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
               {{ activity.start_time }}
             </th>
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
+            <!-- <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
               {{ activity.end_time }}
-            </th>
+            </th> -->
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[15%] truncate">
               {{ activity.duration }}
             </th>

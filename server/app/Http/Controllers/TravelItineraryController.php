@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TravelItinerary;
 use App\Services\ChatbotService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Services\TravelItineraryService;
 use App\Http\Requests\Travel\TravelUpdateRequest;
@@ -61,6 +62,13 @@ class TravelItineraryController extends Controller
     public function destroy(TravelItinerary $travelItinerary)
     {
         $travelItinerary->delete();
+
+        return response()->noContent();
+    }
+
+    public function destroyAll()
+    {
+        Auth::user()->chats()->delete();
 
         return response()->noContent();
     }

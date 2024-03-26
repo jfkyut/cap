@@ -92,4 +92,11 @@ class ChatController extends Controller
 
         return response()->noContent();
     }
+
+    public function destroyAll()
+    {
+        Auth::user()->chats()->delete();
+
+        return response()->noContent();
+    }
 }

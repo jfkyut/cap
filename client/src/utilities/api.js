@@ -12,7 +12,7 @@ export const useApiUtilities = () => {
       toast.error(
         !error.response 
           ? error.message 
-          : error.response.data.message
+          : error.response.data.message || error.message
       )
 
       return false;

@@ -48,12 +48,19 @@ export const useTravelService = () => {
     })
   }
 
+  const travelToPdfRequest = (form) => {
+    return sendApiRequest( async () => {
+      return await axios.post('/api/travel/pdf', form, { responseType: 'blob' });
+    })
+  }
+
   return { 
     getAllTravelRequest,
     getTravelRequest,
     generateTravelRequest,
     updateTravelRequest,
     destroyTravelRequest,
-    destroyAllTravelRequest
+    destroyAllTravelRequest,
+    travelToPdfRequest
   }
 }

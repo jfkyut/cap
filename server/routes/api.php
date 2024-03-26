@@ -39,4 +39,5 @@ Route::middleware(['auth:sanctum'])
         Route::put('/travel/{travelItinerary}', [TravelItineraryController::class, 'update']);
         Route::delete('/travel/{travelItinerary}', [TravelItineraryController::class, 'destroy']);
         Route::delete('/travel', [TravelItineraryController::class, 'destroyAll']);
+        Route::post('/travel/pdf', [TravelItineraryController::class, 'travelPdf']);
     });

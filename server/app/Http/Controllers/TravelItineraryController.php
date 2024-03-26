@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\TravelItinerary;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\ChatbotService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 use App\Services\TravelItineraryService;
 use App\Http\Requests\Travel\TravelUpdateRequest;
+use App\Http\Requests\Travel\TravelHtmlToPdfRequest;
 use App\Http\Requests\Travel\GenerateItineraryRequest;
 
 class TravelItineraryController extends Controller
@@ -54,6 +57,15 @@ class TravelItineraryController extends Controller
         $travelItinerary['plan'] = Crypt::decrypt($travelItinerary['plan']);
 
         return response($travelItinerary);
+    }
+
+    public function travelPdf(TravelHtmlToPdfRequest $request)
+    {
+        $pdf = Pdf::loadView('travel-pdf', ['travel' => $request->validated()])
+                    ->setPaper('a4')
+                    ->setOption(['dpi' => 150]);
+
+        return response($pdf->output());
     }
 
     /**

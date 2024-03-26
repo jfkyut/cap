@@ -23,14 +23,14 @@ watch(travelId, (travelId) => {
 
   <TravelControl />
 
-  <div class="space-y-6 max-w-6xl mx-auto my-8 lg:my-6" id="pdf-this">
+  <div class="max-w-6xl mx-auto my-8 lg:my-6" id="pdf-this">
 
     <!-- overview -->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-6">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
           <tr class="border-b dark:border-gray-600">
-            <th scope="col" colspan="5" class="px-6 py-3 truncate lg:text-center">
+            <th scope="col" colspan="2" class="px-6 py-3 truncate lg:text-center">
               <span class="text-lg dark:text-gray-300">
                 {{ travel?.title }}
               </span>
@@ -112,7 +112,7 @@ watch(travelId, (travelId) => {
     <!-- overview end -->
 
     <!-- accommodation suggestion -->
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-6">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
           <tr class="border-b dark:border-gray-600">
@@ -166,7 +166,7 @@ watch(travelId, (travelId) => {
     </div>
     <!-- accommodation suggestion end -->
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg" v-for="(day, index) in travel?.plan.daily" :key="index">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-6" v-for="(day, index) in travel?.plan.daily" :key="index">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
           <tr class="border-b dark:border-gray-600">

@@ -62,7 +62,7 @@ class TravelItineraryController extends Controller
     public function travelPdf(TravelHtmlToPdfRequest $request)
     {
         $pdf = Pdf::loadView('travel-pdf', ['travel' => $request->validated()])
-                    ->setPaper('a4')
+                    ->setPaper('letter')
                     ->setOption(['dpi' => 150]);
 
         return response($pdf->output());

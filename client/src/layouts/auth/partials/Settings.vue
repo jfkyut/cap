@@ -40,8 +40,7 @@ watch(isSettingsDropdownShow, (settingsState) => {
     button-text="Settings" 
     icon-class="fa fa-sliders" 
     @toggle-dropdown="toggleChatDropdown" 
-    :is-links-show="isSettingsDropdownShow"
-    route-contains="chat">
+    :is-links-show="isSettingsDropdownShow">
 
     <DeleteAllChat />
     <DeleteAllTravel />

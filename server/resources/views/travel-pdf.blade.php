@@ -137,14 +137,14 @@
         }
 
     </style>
-    <title>{{ $travelPlan['title'] }}</title>
+    <title>{{ $travel['title'] }}</title>
 </head>
 <body>
     <div style="text-align: center;">
-        <span class="h1 text-xl font-bold text-blue-900 mb-5" style="text-transform: uppercase;">{{ $travelPlan['title'] }}</span>
+        <span class="h1 text-xl font-bold text-blue-900 mb-5" style="text-transform: uppercase;">{{ $travel['title'] }}</span>
         <br>
         <strong>VTASVP's AI Travel Itinerary Generator</strong>
     </div>
-    {!! $travelPlan['plan'] !!}
+    {!! $travel['plan'] !!}
 </body>
 </html>

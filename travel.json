@@ -13,14 +13,14 @@
                 "name": "Name of accommodation",
                 "location": "location",
                 "type": "type (eg. hotel,)",
-                "estimated_cost": "₱ <amount> (base on number of people)",
+                "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                 "contact": "<contact> (N/A) <- if not available"
             },
             {
                 "name": "Name of accommodation",
                 "location": "location",
                 "type": "type (eg. hotel,)",
-                "estimated_cost": "₱ <amount> (base on number of people)",
+                "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                 "contact": "<contact> (N/A) <- if not available"
             }
         ],
@@ -36,7 +36,7 @@
                 "activities": [
                     {
                         "name": "activity 1",
-                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
                         "location": "location",
                         "transportation": "whatever the transportation",
@@ -45,7 +45,7 @@
                     },
                     {
                         "name": "activity 1",
-                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
                         "location": "location",
                         "transportation": "whatever the transportation",
@@ -60,7 +60,7 @@
                 "activities": [
                     {
                         "name": "activity 1",
-                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
                         "location": "location 1",
                         "transportation": "whatever the transportation",
@@ -69,7 +69,7 @@
                     },
                     {
                         "name": "activity 2",
-                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
                         "location": "transfer to location 2",
                         "transportation": "whatever the transportation",
@@ -78,7 +78,7 @@
                     },
                     {
                         "name": "activity 3",
-                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "estimated_cost": "PHP <amount> (base on number of people) or N/A",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
                         "location": "location 2",
                         "transportation": "whatever the transportation",

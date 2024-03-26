@@ -11,17 +11,26 @@ const travelId = computed(() => route.params.id);
 
 onMounted(() => {
   activeTravelId.value = travelId.value;
+
+  setTimeout(() => {
+    document.title = `${travel.value?.title} | VTASVP`;
+  }, 500)
 })
 
 watch(travelId, (travelId) => {
   activeTravelId.value = travelId
-})
 
+  document.title = `${travel.value?.title} | VTASVP`;
+})
 </script>
 
 <template>
 
   <TravelControl />
+
+  <header class="text-center uppercase font-black mt-4">
+    <h1>{{ travel?.title }}</h1>
+  </header>
 
   <div class="max-w-6xl mx-auto my-8 lg:my-6" id="pdf-this">
 
@@ -32,14 +41,14 @@ watch(travelId, (travelId) => {
           <tr class="border-b dark:border-gray-600">
             <th scope="col" colspan="2" class="px-6 py-3 truncate lg:text-center">
               <span class="text-lg dark:text-gray-300">
-                {{ travel?.title }}
+                Travel Overview
               </span>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Destination
             </th>
             <td class="px-6 py-4">
@@ -47,7 +56,7 @@ watch(travelId, (travelId) => {
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Arrival Date
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -55,7 +64,7 @@ watch(travelId, (travelId) => {
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Departure Date
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -63,7 +72,7 @@ watch(travelId, (travelId) => {
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Duration
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -72,7 +81,7 @@ watch(travelId, (travelId) => {
           </tr>
           
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Activities
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -81,7 +90,7 @@ watch(travelId, (travelId) => {
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Individual count
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -90,7 +99,7 @@ watch(travelId, (travelId) => {
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Inclusion
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -99,7 +108,7 @@ watch(travelId, (travelId) => {
           </tr>
 
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%]">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[50%] text-left">
               Exclusion
             </th>
             <td class="px-6 py-4 w-[50%]">
@@ -145,7 +154,7 @@ watch(travelId, (travelId) => {
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" 
             v-for="(accommodation, index) in travel?.plan.accommodation_suggestion" 
             :key="index">
-            <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
               {{ accommodation.name }}
             </th>
             <td class="px-6 py-4">
@@ -196,13 +205,13 @@ watch(travelId, (travelId) => {
               Transportation
             </th>
             <th scope="col" class="px-6 py-3 truncate">
-              Estimated budget
+              Estimated Cost
             </th>
           </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" v-for="(activity, index) in day.activities" :key="index">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[40%] truncate">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[40%] truncate text-left">
               {{ activity.name }}
             </th>
             <td scope="row" class="px-6 py-4 w-[15%] truncate">
@@ -221,7 +230,7 @@ watch(travelId, (travelId) => {
               {{ activity.transportation }}
             </td>
             <td scope="row" class="px-6 py-4 w-[15%] truncate">
-              {{ activity.estimated_budget }}
+              {{ activity.estimated_cost }}
             </td>
           </tr>
         </tbody>

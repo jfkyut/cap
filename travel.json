@@ -62,16 +62,25 @@
                         "name": "activity 1",
                         "estimated_budget": "₱ <amount> (base on number of people)",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
-                        "location": "location",
+                        "location": "location 1",
                         "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"
                     },
                     {
-                        "name": "activity 1",
+                        "name": "activity 2",
                         "estimated_budget": "₱ <amount> (base on number of people)",
                         "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
-                        "location": "location",
+                        "location": "transfer to location 2",
+                        "transportation": "whatever the transportation",
+                        "start_time": "start time of activity",
+                        "end_time": "start time of activity"
+                    },
+                    {
+                        "name": "activity 3",
+                        "estimated_budget": "₱ <amount> (base on number of people)",
+                        "duration": "2 (hour/s || day/s) (make this sequential and realistic)",
+                        "location": "location 2",
                         "transportation": "whatever the transportation",
                         "start_time": "start time of activity",
                         "end_time": "start time of activity"

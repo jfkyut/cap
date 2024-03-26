@@ -68,7 +68,7 @@ class TravelItineraryController extends Controller
 
     public function destroyAll()
     {
-        Auth::user()->chats()->delete();
+        Auth::user()->travelItineraries()->delete();
 
         return response()->noContent();
     }

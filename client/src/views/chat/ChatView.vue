@@ -11,14 +11,14 @@ import EmptyMessagePlaceholder from './partials/EmptyMessagePlaceholder.vue';
 
 const route = useRoute();
 const { getChatMessages } = useChatStore();
-const { chats, temporaryMessage, chat } = storeToRefs(useChatStore());
+const { chats, temporaryMessage, chat, activeChatId } = storeToRefs(useChatStore());
 
 const chatId = computed(() => route.params.id);
 
 const chatContainerRef = ref(null);
 
 const setChatViewHeight = async () => {
-  if (chatContainerRef.value !== null || chatContainerRef.value !== undefined) {
+  if (chatContainerRef.value) {
     setTimeout(() => {
       chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
     }, 100)
@@ -27,37 +27,31 @@ const setChatViewHeight = async () => {
 
 onMounted(() => {
   setTimeout(() => {
+    activeChatId.value = chatId.value;
     (route.name === 'chat') && getChatMessages(chatId.value)
-  }, 50)
+  }, 500)
 });
 
-const currentChat = computed(() => {
-  return chats.value.find((chat) => chat.id === chatId.value);
-})
-
-watch([temporaryMessage, currentChat, chatContainerRef], () => {
+watch([temporaryMessage, chatContainerRef, chatId], () => {
   setChatViewHeight()
-})
-
-watch(currentChat, (current) => {
-  chat.value = current;
 })
 
 watch(chatId, (id) => {
   getChatMessages(id)
-  document.title = `${currentChat.value?.title || 'Chat'} | VTASVP`;
+  activeChatId.value = id
+  document.title = `${chat.value?.title || 'Chat'} | VTASVP`;
 })
 
 </script>
 
 <template>
   <div class="relative min-h-[88vh]">
-    <EmptyMessagePlaceholder v-if="!currentChat?.messages && !temporaryMessage" />
+    <EmptyMessagePlaceholder v-if="!chat?.messages && !temporaryMessage" />
     <div 
       v-else
       class="w-full text-black relative h-[79vh] overflow-y-auto space-y-6 py-6 scroll-smooth" 
       ref="chatContainerRef">
-      <Messages :messages="currentChat?.messages" />
+      <Messages :messages="chat?.messages" />
       <TemporaryMessages />
     </div>
     <div class="w-full absolute bottom-4">

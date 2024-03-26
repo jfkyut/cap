@@ -15,6 +15,7 @@ import { storeToRefs } from 'pinia';
 import ChatLinks from './partials/ChatLinks.vue';
 import { useTravelService } from '@/services/travelService';
 import { useTravelStore } from '@/stores/travel';
+import Settings from './partials/Settings.vue';
 
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
@@ -23,14 +24,7 @@ const { getAllTravelRequest } = useTravelService();
 const { travels } = storeToRefs(useTravelStore());
 
 const profileStore = useProfileStore();
-const themeStore = useThemeStore();
 const sidebarStore = useSidebarStore();
-
-const toggleTheme = (e) => {
-  (e.target.checked)
-    ? themeStore.setToDark()
-    : themeStore.setToLight()
-}
 
 const toggleSidebar = () => {
   (sidebarStore.isShow === true)
@@ -103,18 +97,7 @@ onMounted(() => {
           <TravelLinks :travels="travels" @on-access-link="closeOnSmallScreen" />
         </li>
         <li>
-          <div class="flex items-center justify-between p-2 rounded-lg text-white hover:bg-gray-700 group">
-            <div>
-              <span class="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white">
-                <i class="fa fa-moon"></i>
-              </span>
-              <span class="ms-3">Dark mode</span>
-            </div>
-
-            <ToggleInput 
-              :is-checked="themeStore.theme === 'dark' ? true : false"
-              @on-change="toggleTheme" />
-          </div>
+          <Settings @on-access-link="closeOnSmallScreen" />
         </li>
       </ul>
     </div>

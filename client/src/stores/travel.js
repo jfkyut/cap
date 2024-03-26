@@ -47,6 +47,8 @@ export const useTravelStore = defineStore('travel', () => {
     travels.value = travels.value.filter((travel) => travel.id !== id)
   } 
 
+  const destroyAllTravel = () => travels.value = [];
+
   return {
     form,
     travel,
@@ -55,6 +57,7 @@ export const useTravelStore = defineStore('travel', () => {
     addTravel,
     emptyForm,
     updateCurrentTravel,
-    deleteCurrentTravel
+    deleteCurrentTravel,
+    destroyAllTravel
   }
 })

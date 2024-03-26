@@ -32,9 +32,17 @@ export const useTravelService = () => {
     })
   }
 
-  const deleteTravelRequest = (id) => {
+  const destroyTravelRequest = (id) => {
     return sendApiRequest( async () => {
       await axios.delete(`/api/travel/${id}`);
+
+      return true;
+    })
+  }
+
+  const destroyAllTravelRequest = () => {
+    return sendApiRequest( async () => {
+      await axios.delete(`/api/travel`);
 
       return true;
     })
@@ -45,6 +53,7 @@ export const useTravelService = () => {
     getTravelRequest,
     generateTravelRequest,
     updateTravelRequest,
-    deleteTravelRequest 
+    destroyTravelRequest,
+    destroyAllTravelRequest
   }
 }

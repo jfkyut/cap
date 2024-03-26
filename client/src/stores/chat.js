@@ -52,6 +52,8 @@ export const useChatStore = defineStore('chat', () => {
     })
   }
 
+  const destroyAllChat = () => chats.value = [];
+
   return { 
     message, 
     messages,
@@ -62,6 +64,7 @@ export const useChatStore = defineStore('chat', () => {
     addMessage,
     getChatMessages,
     updateCurrentChat,
-    destroyCurrentChat
+    destroyCurrentChat,
+    destroyAllChat
   }
 })

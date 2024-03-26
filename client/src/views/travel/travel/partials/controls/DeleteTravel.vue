@@ -9,7 +9,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 
-const { deleteTravelRequest } = useTravelService();
+const { destroyTravelRequest } = useTravelService();
 const { deleteCurrentTravel } = useTravelStore();
 const { travel } = storeToRefs(useTravelStore());
 const router = useRouter();
@@ -27,7 +27,7 @@ const closeModal = () => {
 }
 
 const deleteTravel = async () => {
-  if (await deleteTravelRequest(travel.value.id)) {
+  if (await destroyTravelRequest(travel.value.id)) {
     deleteCurrentTravel(travel.value.id)
     closeModal()
     router.push('/travel/create');

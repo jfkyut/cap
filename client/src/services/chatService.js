@@ -48,12 +48,21 @@ export const useChatService = () => {
     })
   }
 
+  const destroyAllChatRequest = () => {
+    return sendApiRequest( async () => {
+      await axios.delete(`/api/chat`);
+
+      return true;
+    })
+  }
+
   return { 
     sendChatRequest, 
     sendMessageRequest, 
     getChatsRequest, 
     getMessagesRequest,
     updateChatRequest,
-    destroyChatRequest
+    destroyChatRequest,
+    destroyAllChatRequest
   }
 }

@@ -25,8 +25,6 @@ const logout = async () => {
   )
 }
 
-defineProps({ user: Object })
-
 const isDropdownShow = ref(false);
 
 const showDropdown = (e) => {

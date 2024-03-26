@@ -1,13 +1,10 @@
 <script setup>
 
 import { RouterLink } from 'vue-router';
-import { useThemeStore } from '@/stores/theme';
-import { useProfileStore } from '@/stores/profile';
 import { useSidebarStore } from '@/stores/sidebar';
 import UserDropdown from '@/layouts/auth/partials/UserDropdown.vue';
 import ExtraButton from '@/components/buttons/ExtraButton.vue';
 import TravelLinks from './partials/TravelLinks.vue';
-import ToggleInput from '@/components/inputs/ToggleInput.vue';
 import { onMounted } from 'vue';
 import { useChatService } from '@/services/chatService';
 import { useChatStore } from '@/stores/chat';
@@ -23,7 +20,6 @@ const { getChatsRequest } = useChatService();
 const { getAllTravelRequest } = useTravelService();
 const { travels } = storeToRefs(useTravelStore());
 
-const profileStore = useProfileStore();
 const sidebarStore = useSidebarStore();
 
 const toggleSidebar = () => {
@@ -64,7 +60,7 @@ onMounted(() => {
         <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
       </svg>
     </ExtraButton>
-    <UserDropdown :user="profileStore.user" />
+    <UserDropdown />
   </div>
   
   <aside 

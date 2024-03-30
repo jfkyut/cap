@@ -68,7 +68,7 @@ onMounted(() => {
     :class="sidebarStore.isShow ? 'translate-x-0' : '-translate-x-full'"
     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-gray-800 border-r border-gray-700" aria-label="Sidebar">
     <div class="px-3 py-4 pt-5">
-      <h2 class="text-white font-black uppercase md:text-center">Vue Starter</h2>
+      <h2 class="text-white font-black uppercase md:text-center">VTASVP</h2>
       <button @click="sidebarStore.setHide()" type="button" class="lg:hidden text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>

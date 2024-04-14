@@ -2,7 +2,7 @@ import ErrorLayout from '@/layouts/error/ErrorLayout.vue';
 
 const errorRoutes = [
   {
-    path: '/:404(.*)',
+    path: '/:notfound(.*)*',
     name: 'Not found',
     component: () => import('@/views/errors/NotFound.vue'),
     meta: {

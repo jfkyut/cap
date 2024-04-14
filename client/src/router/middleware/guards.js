@@ -23,7 +23,18 @@ const guards = () => {
     'home'
   );
 
-  return { authenticated, guest, verified, notVerified };
+  const superUser = createGuard(
+    (profile) => profile.isSuperUser,
+    'Not found'
+  )
+
+  return { 
+    authenticated, 
+    guest, 
+    verified, 
+    notVerified,
+    superUser
+   };
 }
 
 export default guards;

@@ -5,8 +5,15 @@ import axios from "axios";
 export const useProfileStore = defineStore('profile', () => {
 
   const user = ref(null);
+
+  // auth
   const isAuthenticated = computed(() => !user.value ? false : true)
+
+  // verified
   const isVerified = computed(() => !user.value?.email_verified_at ? false : true);
+
+  // superuser
+  const isSuperUser = computed(() => user.value?.is_admin !== 0 ? true : false);
 
   const getProfile = async () => {
     if (!user.value) {
@@ -31,6 +38,7 @@ export const useProfileStore = defineStore('profile', () => {
     user,
     isAuthenticated,
     isVerified,
+    isSuperUser,
     updateProfile,
     destroyProfile,
     getProfile

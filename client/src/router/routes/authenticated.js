@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/layouts/auth/AuthenticatedLayout.vue';
 import guards from '@/router/middleware/guards';
 
-const { authenticated, verified } = guards();
+const { authenticated, verified, superUser } = guards();
 
 const authenticatedRoutes = [
   {
@@ -64,6 +64,16 @@ const authenticatedRoutes = [
       title: 'New Travel'
     },
     beforeEnter: [authenticated, verified]
+  },
+  {
+    path: '/reports',
+    name: 'reports',
+    component: () => import('@/views/report/ReportView.vue'),
+    meta: {
+      layout: AuthenticatedLayout,
+      title: 'New Travel'
+    },
+    beforeEnter: [authenticated, verified, superUser]
   },
 ];
 

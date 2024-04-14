@@ -13,9 +13,12 @@ import ChatLinks from './partials/ChatLinks.vue';
 import { useTravelService } from '@/services/travelService';
 import { useTravelStore } from '@/stores/travel';
 import Settings from './partials/Settings.vue';
+import { useProfileStore } from '@/stores/profile';
 
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
+
+const { isSuperUser } = storeToRefs(useProfileStore());
 
 const { getAllTravelRequest } = useTravelService();
 const { travels } = storeToRefs(useTravelStore());
@@ -91,6 +94,14 @@ onMounted(() => {
         </li>
         <li>
           <TravelLinks :travels="travels" @on-access-link="closeOnSmallScreen" />
+        </li>
+        <li v-if="isSuperUser">
+          <RouterLink to="/reports" @click="closeOnSmallScreen" active-class="bg-gray-700" class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
+            <span class="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white">
+              <i class="fa fa-chart-line"></i>
+            </span>
+            <span class="ms-3">Reports</span>
+          </RouterLink>
         </li>
         <li>
           <Settings @on-access-link="closeOnSmallScreen" />

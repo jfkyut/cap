@@ -4,9 +4,55 @@ import { onMounted, ref } from 'vue';
 import ApexCharts from 'apexcharts';
 
 const options = {
+  // set the labels option to true to show the labels on the X and Y axis
+  xaxis: {
+    show: true,
+    categories: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb'],
+    labels: {
+      show: true,
+      style: {
+        fontFamily: "Inter, sans-serif",
+        cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+      }
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+  },
+  yaxis: {
+    show: true,
+    labels: {
+      show: true,
+      style: {
+        fontFamily: "Inter, sans-serif",
+        cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+      },
+      formatter: function (value) {
+        return '$' + value;
+      }
+    }
+  },
+  series: [
+    {
+      name: "Developer Edition",
+      data: [150, 141, 145, 152, 135, 125],
+      color: "#1A56DB",
+    },
+    {
+      name: "Designer Edition",
+      data: [43, 13, 65, 12, 42, 73],
+      color: "#7E3BF2",
+    },
+  ],
   chart: {
+    sparkline: {
+      enabled: false
+    },
     height: "100%",
-    maxWidth: "100%",
+    width: "100%",
     type: "area",
     fontFamily: "Inter, sans-serif",
     dropShadow: {
@@ -37,42 +83,17 @@ const options = {
   stroke: {
     width: 6,
   },
+  legend: {
+    show: false
+  },
   grid: {
-    show: false,
-    strokeDashArray: 4,
-    padding: {
-      left: 2,
-      right: 2,
-      top: 0
-    },
-  },
-  series: [
-    {
-      name: "New users",
-      data: [6500, 6418, 6456, 6526, 6356, 6456],
-      color: "#1A56DB",
-    },
-  ],
-  xaxis: {
-    categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
-    labels: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-  },
-  yaxis: {
     show: false,
   },
 }
 
 onMounted(() => {
-  if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.getElementById("area-chart"), options);
+  if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined') {
+    const chart = new ApexCharts(document.getElementById("labels-chart"), options);
     chart.render();
   }
 })
@@ -82,22 +103,24 @@ onMounted(() => {
 <template>
   <div>
 
-    <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-      <div class="flex justify-between">
+    This is the daily chart
+    
+    <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800">
+      <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
         <div>
-          <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+          <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">$12,423</h5>
+          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sales this week</p>
         </div>
         <div
           class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-          12%
+          23%
           <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
           </svg>
         </div>
       </div>
-      <div id="area-chart"></div>
-      <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+      <div id="labels-chart" class="px-2.5"></div>
+      <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-5 p-4 md:p-6 pt-0 md:pt-0">
         <div class="flex justify-between items-center pt-5">
           <!-- Button -->
           <button
@@ -134,7 +157,7 @@ onMounted(() => {
           <a
             href="#"
             class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-            Users Report
+            Sales Report
             <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
             </svg>
@@ -142,5 +165,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
+
+
   </div>
 </template>

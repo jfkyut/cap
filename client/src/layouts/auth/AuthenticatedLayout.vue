@@ -14,6 +14,7 @@ import { useTravelService } from '@/services/travelService';
 import { useTravelStore } from '@/stores/travel';
 import Settings from './partials/Settings.vue';
 import { useProfileStore } from '@/stores/profile';
+import { useTokenService } from '@/services/tokenService';
 
 const { chats } = storeToRefs(useChatStore());
 const { getChatsRequest } = useChatService();
@@ -22,6 +23,8 @@ const { isSuperUser } = storeToRefs(useProfileStore());
 
 const { getAllTravelRequest } = useTravelService();
 const { travels } = storeToRefs(useTravelStore());
+
+const { getNewSanctumToken } = useTokenService();
 
 const sidebarStore = useSidebarStore();
 
@@ -45,9 +48,18 @@ const getAllTravels = async () => {
   travels.value = data;
 }
 
+const setToken = async () => {
+  if (localStorage.getItem('sanctum-token') === null) {
+    const { data } = await getNewSanctumToken();
+
+    localStorage.setItem('sanctum-token', data.token)
+  }
+}
+
 onMounted(() => {
   getAllChats();
-  getAllTravels()
+  getAllTravels();
+  setToken();
 })
 
 </script>

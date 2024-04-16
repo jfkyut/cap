@@ -8,11 +8,12 @@ import { useChatStore } from '@/stores/chat';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import EmptyMessagePlaceholder from './partials/EmptyMessagePlaceholder.vue';
+import { useProfileStore } from '@/stores/profile';
 
 const route = useRoute();
 const { getChatMessages } = useChatStore();
-const { chats, temporaryMessage, chat, activeChatId } = storeToRefs(useChatStore());
-
+const { temporaryMessage, chat, activeChatId } = storeToRefs(useChatStore());
+const { user } = storeToRefs(useProfileStore());
 const chatId = computed(() => route.params.id);
 
 const chatContainerRef = ref(null);
@@ -25,11 +26,13 @@ const setChatViewHeight = async () => {
   }
 }
 
-onMounted(() => {
+onMounted( () => {
   setTimeout(() => {
     activeChatId.value = chatId.value;
     (route.name === 'chat') && getChatMessages(chatId.value)
   }, 500)
+
+  Echo.private(`chatbot-usage.${user.value.id}`, user.value)
 });
 
 watch([temporaryMessage, chatContainerRef, chatId], () => {

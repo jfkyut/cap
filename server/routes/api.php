@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthSanctumController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TravelItineraryController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use App\Http\Controllers\PasswordController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/sanctum/auth', [AuthSanctumController::class, 'authenticate'])->name('sanctum.auth');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/profile', [ProfileController::class,'index']);
@@ -40,3 +43,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/travel', [TravelItineraryController::class, 'destroyAll']);
     Route::post('/travel/pdf', [TravelItineraryController::class, 'travelPdf']);
 });
+

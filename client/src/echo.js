@@ -6,7 +6,6 @@ window.Pusher = Pusher;
 
 const authToken = ref(localStorage.getItem('sanctum-token'));
 
-console.log(authToken.value);
 
 window.Echo = new Echo({
   broadcaster: 'reverb',
@@ -23,5 +22,3 @@ window.Echo = new Echo({
     }
   }
 });
-
-window.Echo.private('test.9bd28f09-7528-4aba-ab6d-b29c71973b9a')

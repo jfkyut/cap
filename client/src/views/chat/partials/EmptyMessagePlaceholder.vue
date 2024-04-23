@@ -4,7 +4,7 @@
       <img src="@/assets/images/chad.webp" alt="" class="h-48 rounded-full">
       <div class="text-center">
         <span class="text-4xl font-bold">
-          ChadGPT
+          CHAD
         </span>
       </div>
     </div>

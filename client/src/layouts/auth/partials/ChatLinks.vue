@@ -24,7 +24,7 @@ watch(isChatDrodownLinkShow, (chatDropdownState) => {
 
 <template>
   <NavDropdownTrigger 
-    button-text="ChadGPT" 
+    button-text="Chatbot" 
     icon-class="fa fa-robot" 
     @toggle-dropdown="toggleChatDropdown" 
     :is-links-show="isChatDrodownLinkShow"

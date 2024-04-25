@@ -7,7 +7,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\ChatbotService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Storage;
 use App\Services\TravelItineraryService;
 use App\Http\Requests\Travel\TravelUpdateRequest;
 use App\Http\Requests\Travel\TravelHtmlToPdfRequest;
@@ -61,9 +60,12 @@ class TravelItineraryController extends Controller
 
     public function travelPdf(TravelHtmlToPdfRequest $request)
     {
-        $pdf = Pdf::loadView('travel-pdf', ['travel' => $request->validated()])
-                    ->setPaper('letter')
-                    ->setOption(['dpi' => 150]);
+        $pdf = Pdf::loadView('travel-pdf', [
+            'travel' => [
+                'title' => $request->validated('title'),
+                'plan' => $request->validated('plan'),
+            ]
+        ])->setPaper('letter')->setOptions(['dpi' => 150]);
 
         return response($pdf->output());
     }

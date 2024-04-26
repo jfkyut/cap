@@ -42,7 +42,7 @@ const { user } = storeToRefs(useProfileStore());
   
       <section>
         <header class="mb-6 pb-2 border-b dark:border-b-gray-700">
-          <h2 class="text-2xl font-medium dark:text-white">Advance Settings</h2>
+          <h2 class="text-2xl font-medium dark:text-white">Advance</h2>
         </header>
 
         <div class="bg-white dark:bg-gray-800 shadow border dark:border-gray-700 max-w-4xl p-4 space-y-4 rounded-t-md">

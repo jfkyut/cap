@@ -3,11 +3,15 @@
 import ChatForm from '@/views/chat/partials/ChatForm.vue';
 import TemporaryMessages from '@/views/chat/partials/TemporaryMessages.vue';
 import Messages from '@/views/chat/partials/Messages.vue';
-import { computed, onMounted, watch, ref } from 'vue';
+import { computed, onMounted, watch, ref, onUnmounted } from 'vue';
 import { useChatStore } from '@/stores/chat';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import EmptyMessagePlaceholder from './partials/EmptyMessagePlaceholder.vue';
+import { useUsageStore } from '@/stores/usage';
+
+const { chatTime } = storeToRefs(useUsageStore());
+const { startChatTimeCount, stopChatTimeCouont } = useUsageStore();
 
 const route = useRoute();
 const { getChatMessages } = useChatStore();
@@ -29,7 +33,24 @@ onMounted( () => {
     activeChatId.value = chatId.value;
     (route.name === 'chat') && getChatMessages(chatId.value)
   }, 500)
+
+  startChatTimeCount();
 });
+
+onUnmounted(() => {
+  stopChatTimeCouont()
+})
+
+const updateChatUsage = () => {
+  chatTime.value = 0;
+  console.log('sent a request to backend');
+}
+
+watch(chatTime, (chatTime) => {
+  if (chatTime === 60) {
+    updateChatUsage();
+  }
+})
 
 watch([temporaryMessage, chatContainerRef, chatId], () => {
   setChatViewHeight()

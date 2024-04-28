@@ -1,13 +1,17 @@
 <script setup>
 import { useTravelStore } from '@/stores/travel';
 import { storeToRefs } from 'pinia';
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted, onUnmounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TravelControl from './partials/TravelControls.vue';
+import { useUsageStore } from '@/stores/usage';
 
 const { travel, activeTravelId } = storeToRefs(useTravelStore());
 const route = useRoute();
 const travelId = computed(() => route.params.id);
+
+const { travelTime } = storeToRefs(useUsageStore());
+const { startTravelTimeCount, stopTravelTimeCount } = useUsageStore();
 
 onMounted(() => {
   activeTravelId.value = travelId.value;
@@ -15,6 +19,24 @@ onMounted(() => {
   setTimeout(() => {
     document.title = `${travel.value?.title} | VTASVP`;
   }, 500)
+
+  startTravelTimeCount();
+})
+
+onUnmounted(() => {
+  stopTravelTimeCount();
+})
+
+const updateTravelUsage = () => {
+  console.log('Update Travel Usage');
+
+  travelTime.value = 0;
+}
+
+watch(travelTime, (travelTime) => {
+  if (travelTime === 60) {
+    updateTravelUsage()
+  }
 })
 
 watch(travelId, (travelId) => {

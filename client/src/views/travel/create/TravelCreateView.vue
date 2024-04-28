@@ -11,13 +11,17 @@ import { useTravelStore } from '@/stores/travel';
 import { useTravelService } from '@/services/travelService';
 import { storeToRefs } from 'pinia';
 import LoadingButton from '@/components/buttons/LoadingButton.vue';
-import { ref } from 'vue';
+import { onMounted, ref, onUnmounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUsageStore } from '@/stores/usage';
 
 const { generateTravelRequest } = useTravelService();
 const { emptyForm, addTravel } = useTravelStore()
 const { form } = storeToRefs(useTravelStore());
 const router = useRouter();
+
+const { travelTime } = storeToRefs(useUsageStore());
+const { startTravelTimeCount, stopTravelTimeCount } = useUsageStore();
 
 const isLoading = ref(false);
 
@@ -34,6 +38,20 @@ const generateTravelItinerary = async () => {
     emptyForm();
   }
 }
+
+onMounted(() => {
+  startTravelTimeCount();
+})
+
+onUnmounted(() => {
+  stopTravelTimeCount();
+})
+
+watch(travelTime, (travelTime) => {
+  if (travelTime === 60) {
+    updateTravelUsage()
+  }
+})
 
 </script>
 

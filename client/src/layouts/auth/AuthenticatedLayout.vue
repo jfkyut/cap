@@ -49,10 +49,10 @@ const getAllTravels = async () => {
 }
 
 const setToken = async () => {
-  if (localStorage.getItem('sanctum-token') === null) {
+  if (sessionStorage.getItem('sanctum-token') === null) {
     const { data } = await getNewSanctumToken();
 
-    localStorage.setItem('sanctum-token', data.token)
+    sessionStorage.setItem('sanctum-token', data.token)
   }
 }
 

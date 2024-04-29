@@ -45,5 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/travel/pdf', [TravelItineraryController::class, 'travelPdf']);
 
     Route::post('/usage', [UsageController::class,'store'])->name('usage.store');
+    Route::get('/usage/pie', [UsageController::class,'pie'])->name('usage.pie');
+    
 });
 

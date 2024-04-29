@@ -71,7 +71,7 @@ const authenticatedRoutes = [
     component: () => import('@/views/report/ReportView.vue'),
     meta: {
       layout: AuthenticatedLayout,
-      title: 'New Travel'
+      title: 'Usage Report'
     },
     beforeEnter: [authenticated, verified, superUser]
   },

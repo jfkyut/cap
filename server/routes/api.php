@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthSanctumController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TravelItineraryController;
+use App\Http\Controllers\UsageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
@@ -42,5 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/travel/{travelItinerary}', [TravelItineraryController::class, 'destroy']);
     Route::delete('/travel', [TravelItineraryController::class, 'destroyAll']);
     Route::post('/travel/pdf', [TravelItineraryController::class, 'travelPdf']);
+
+    Route::post('/usage', [UsageController::class,'store'])->name('usage.store');
 });
 

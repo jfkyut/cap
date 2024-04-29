@@ -5,6 +5,9 @@ import { computed, onMounted, onUnmounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TravelControl from './partials/TravelControls.vue';
 import { useUsageStore } from '@/stores/usage';
+import { useUsageService } from '@/services/usageService';
+
+const { addNewUsageRequest } = useUsageService()
 
 const { travel, activeTravelId } = storeToRefs(useTravelStore());
 const route = useRoute();
@@ -27,8 +30,11 @@ onUnmounted(() => {
   stopTravelTimeCount();
 })
 
-const updateTravelUsage = () => {
-  console.log('Update Travel Usage');
+const updateTravelUsage = async () => {
+  
+  await addNewUsageRequest({
+    name: 'travel'
+  });
 
   travelTime.value = 0;
 }

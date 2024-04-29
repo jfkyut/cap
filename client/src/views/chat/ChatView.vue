@@ -9,6 +9,9 @@ import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import EmptyMessagePlaceholder from './partials/EmptyMessagePlaceholder.vue';
 import { useUsageStore } from '@/stores/usage';
+import { useUsageService } from '@/services/usageService';
+
+const { addNewUsageRequest } = useUsageService()
 
 const { chatTime } = storeToRefs(useUsageStore());
 const { startChatTimeCount, stopChatTimeCouont } = useUsageStore();
@@ -41,9 +44,12 @@ onUnmounted(() => {
   stopChatTimeCouont()
 })
 
-const updateChatUsage = () => {
+const updateChatUsage = async () => {
   chatTime.value = 0;
-  console.log('sent a request to backend');
+  
+  await addNewUsageRequest({
+    name: 'chatbot'
+  })
 }
 
 watch(chatTime, (chatTime) => {

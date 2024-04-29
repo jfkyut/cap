@@ -14,6 +14,9 @@ import LoadingButton from '@/components/buttons/LoadingButton.vue';
 import { onMounted, ref, onUnmounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUsageStore } from '@/stores/usage';
+import { useUsageService } from '@/services/usageService';
+
+const { addNewUsageRequest } = useUsageService();
 
 const { generateTravelRequest } = useTravelService();
 const { emptyForm, addTravel } = useTravelStore()
@@ -37,6 +40,14 @@ const generateTravelItinerary = async () => {
     addTravel(data);
     emptyForm();
   }
+}
+
+const updateTravelUsage = async () => {
+  travelTime.value = 0;
+
+  await addNewUsageRequest({
+    name: 'travel'
+  })
 }
 
 onMounted(() => {

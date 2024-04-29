@@ -5,14 +5,16 @@ const toast = useToast();
 
 export const useApiUtilities = () => {
 
-  const sendApiRequest = async (requestCallback) => {
+  const sendApiRequest = async (requestCallback, toastify = true) => {
     try {
       return await requestCallback();
     } catch (error) {
-      toast.error(
-        !error.response 
-          ? error.message 
-          : error.response.data.message || error.message
+      toastify && (
+        toast.error(
+          !error.response 
+            ? error.message 
+            : error.response.data.message || error.message
+        )
       )
 
       return false;

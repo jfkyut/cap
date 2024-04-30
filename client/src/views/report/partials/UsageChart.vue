@@ -14,8 +14,13 @@ const toggleDropdown = () => {
 }
 
 const days = ref(null);
-
 const chartOptions = ref(null);
+const chart = ref(null);
+
+const dates = ref({
+  start: null,
+  end: null
+})
 
 const updateOptions = (counts, names) => {
   chartOptions.value = {
@@ -50,6 +55,9 @@ const updateOptions = (counts, names) => {
     legend: {
       position: "bottom",
       fontFamily: "Inter, sans-serif",
+      labels: {
+        colors: ["#aaa", "#aaa"],
+      }
     },
     yaxis: {
       labels: {
@@ -80,17 +88,17 @@ onMounted( async () => {
 
   const { data } = await getUsageReportRequest({ days: days.value });
 
+  dates.value.start = data.start_date;
+  dates.value.end = data.end_date
+
   updateOptions([
     data.chatbot,
     data.travel
-  ], [
-    'Chatbot',
-    'Travel'
-  ]);
+  ], Object.keys(data).slice(0, 2));
 
   if (document.getElementById("pie-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.getElementById("pie-chart"), chartOptions.value);
-    chart.render();
+    chart.value = new ApexCharts(document.getElementById("pie-chart"), chartOptions.value);
+    chart.value.render();
   }
 })
 
@@ -99,21 +107,21 @@ watch(days, async (days) => {
 
   const { data } = await getUsageReportRequest({ days: days });
 
+  dates.value.start = data.start_date;
+  dates.value.end = data.end_date
+
   updateOptions([
     data.chatbot,
     data.travel
-  ], [
-    'Chatbot',
-    'Travel'
-  ]);
+  ], Object.keys(data).slice(0, 2));
+
+  chart.value.updateOptions(chartOptions.value);
 })
 
 </script>
 
 <template>
   <div>
-    this is usage chart component
-
     <!-- circle -->
 
     <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
@@ -197,14 +205,10 @@ watch(days, async (days) => {
                 </li>
               </ul>
           </div>
-          <a
-            href="#"
-            class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-            Traffic analysis
-            <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-          </a>
+
+          <div class="inline-flex items-center text-blue-700 dark:text-blue-600 font-medium hover:underline">
+            {{ dates.start }} - {{ dates.end }}
+          </div>
         </div>
       </div>
     </div>

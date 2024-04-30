@@ -22,11 +22,13 @@ class UsageController extends Controller
 
     public function pie(ChartRequest $request)
     {
-        $nthDays = Date::now()->subDays($request->validated('days'));
+        $nthDays = Date::now()->subDays($request->validated('days') - 1);
 
         return [
             'chatbot' => Usage::where('date', '>=', $nthDays)->where('name', 'chatbot')->latest()->count(),
             'travel' => Usage::where('date', '>=', $nthDays)->where('name', 'travel')->latest()->count(),
+            'start_date' => $nthDays->format('j M'),
+            'end_date' => Date::now()->format('j M')
         ];
     }
 }

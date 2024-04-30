@@ -26,7 +26,7 @@ class UsageController extends Controller
 
         return [
             'chatbot' => Usage::where('date', '>=', $nthDays)->where('name', 'chatbot')->latest()->count(),
-            'travel' => Usage::where('date', '>=', $nthDays)->where('name', 'travel')->latest()->count()
+            'travel' => Usage::where('date', '>=', $nthDays)->where('name', 'travel')->latest()->count(),
         ];
     }
 }

@@ -7,9 +7,7 @@ import UsageChart from '@/views/report/partials/UsageChart.vue';
 
 <template>
   <div>
-    this is report page
-
-    <div class="flex justify-center gap-4">
+    <div class="flex flex-col md:flex-row justify-center gap-4">
       <DailyChart />
       <UsageChart />
     </div>

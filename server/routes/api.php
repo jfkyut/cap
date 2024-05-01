@@ -46,6 +46,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/usage', [UsageController::class,'store'])->name('usage.store');
     Route::get('/usage/pie', [UsageController::class,'pie'])->name('usage.pie');
-    
+    Route::get('/usage/daily', [UsageController::class, 'daily'])->name('usage.daily');
 });
 

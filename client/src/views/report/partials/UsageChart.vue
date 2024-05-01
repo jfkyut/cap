@@ -82,6 +82,12 @@ const updateOptions = (counts, names) => {
   }
 }
 
+const setDays = (num) => {
+  days.value = num;
+
+  toggleDropdown();
+}
+
 onMounted( async () => {
 
   days.value = parseInt(sessionStorage.getItem('pie-usage-last-days')) || 7;
@@ -192,16 +198,16 @@ watch(days, async (days) => {
           <div
             :class="[showDropdown ? 'opacity-100' : 'opacity-0 hidden']"
             id="lastDaysdropdown" 
-            class="z-10 bg-white divide-y absolute bottom-12 -left-8 divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            class="z-10 bg-white divide-y absolute bottom-8 -left-8 divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                 <li>
-                  <button @click="days = 7" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</button>
+                  <button @click="setDays(7)" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</button>
                 </li>
                 <li>
-                  <button @click="days = 30" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</button>
+                  <button @click="setDays(30)" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</button>
                 </li>
                 <li>
-                  <button @click="days = 90" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</button>
+                  <button @click="setDays(90)" class="w-full text-start block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</button>
                 </li>
               </ul>
           </div>

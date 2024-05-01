@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use App\Http\Requests\Usage\ChartRequest;
 use App\Http\Requests\Usage\NewUsageRequest;
@@ -29,6 +28,45 @@ class UsageController extends Controller
             'travel' => Usage::where('date', '>=', $nthDays)->where('name', 'travel')->latest()->count(),
             'start_date' => $nthDays->format('j M'),
             'end_date' => Date::now()->format('j M')
+        ];
+    }
+
+    public function daily(ChartRequest $request, Date $date)
+    {
+        $dates = Date::now()->subDays($request->validated('days') - 1)->toPeriod($request->validated('days'));
+        $formattedDates = [];
+
+        foreach ($dates as $date) {
+            $formattedDates[] = Date::parse($date)->format('d M');
+        }
+
+        $chatbotCounts = [];
+        $travelCounts = [];
+
+        foreach ($dates as $date) {
+            $chatbotCounts[] = Usage::where('name', 'chatbot')
+                                    ->whereDate('date', $date)
+                                    ->count();
+                                    
+            $travelCounts[] = Usage::where('name', 'travel')
+                                    ->whereDate('date', $date)
+                                    ->count(); 
+        }
+
+        return [
+            'dates' => $formattedDates,
+            'series' => [
+                [
+                    'name' => 'chatbot',
+                    'data' => $chatbotCounts
+                ],
+                [
+                    'name' => 'travel',
+                    'data' => $travelCounts,
+                ],
+            ],
+            'start_date' => Date::now()->subDays($request->validated('days') - 1)->format('j M'),
+            'end_date' => Date::today()->format('j M')
         ];
     }
 }

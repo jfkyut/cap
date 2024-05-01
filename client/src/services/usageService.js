@@ -19,8 +19,15 @@ export const useUsageService = () => {
     })
   }
 
+  const getDailyUsageReportRequest = (form) => {
+    return sendApiRequest( async () => {
+      return await axios.get(`/api/usage/daily`, { params: form });
+    })
+  }
+
   return {
     addNewUsageRequest,
     getUsageReportRequest,
+    getDailyUsageReportRequest
   }
 }
